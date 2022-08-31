@@ -1,0 +1,76 @@
+@use './default';
+
+//extend
+.list_default{
+    width: 300px;
+    height: 50px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #eee;
+    text-align: left;
+    // list-style: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 20px;
+}
+//mixin
+@mixin alert_default($bg,$ft){
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: $bg;
+    color: $ft;
+    span{
+        font-weight: bold;
+    }
+}
+//extend ex
+.list_active{
+    @extend .list_default;
+    background-color: #007bff;
+    color: #fff;
+}
+.list_disable{
+    @extend .list_default;
+}
+//mixin ex
+.alerts_green{
+    @include alert_default(#dfefd8,#6a8f6f);
+
+}
+.alerts_blue{
+    @include alert_default(#d9ecf6,#658696);
+}
+.alerts_yellow{
+    @include alert_default(#fcf8e2,#997f63);
+}
+
+.ani_text{
+    color: #000;
+    text-align: center;
+}
+.ani_text:hover{
+    animation-name: 와리가리;
+    animation-duration: 1s;
+}
+@keyframes 와리가리 {
+    0% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(-100px);
+    }
+
+    75%{
+        transform: translateX(100px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}

@@ -1,0 +1,109 @@
+@charset "UTF-8";
+ul, li {
+  list-style: none;
+}
+
+.list_default, .list_disable, .list_active {
+  width: 300px;
+  height: 50px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #eee;
+  text-align: left;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.list_active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.alerts_green {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #dfefd8;
+  color: #6a8f6f;
+}
+.alerts_green span {
+  font-weight: bold;
+}
+
+.alerts_blue {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #d9ecf6;
+  color: #658696;
+}
+.alerts_blue span {
+  font-weight: bold;
+}
+
+.alerts_yellow {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #fcf8e2;
+  color: #997f63;
+}
+.alerts_yellow span {
+  font-weight: bold;
+}
+
+.ani_text {
+  color: #000;
+  text-align: center;
+}
+
+.ani_text:hover {
+  -webkit-animation-name: 와리가리;
+          animation-name: 와리가리;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes 와리가리 {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-100px);
+  }
+  75% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes 와리가리 {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-100px);
+  }
+  75% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}/*# sourceMappingURL=style3.css.map */

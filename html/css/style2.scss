@@ -28,6 +28,7 @@ body{
             font-weight: bold;
             margin-top: 30px;
             border: none;
+            border-radius: 5px;
         }
     }
     .ex_box{
@@ -36,5 +37,80 @@ body{
         margin: auto;
         height: 200px;
         text-align: center;
+    }
+    form{
+        input[type=text]{
+            padding: 10px;
+            font-size: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+    }
+    .background{
+        padding: 10px;
+        background-color: black;
+        input{
+            box-sizing: border-box;
+        }
+        .contact_us{
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid black;
+
+            >h2{
+                padding-bottom: 20px;
+            }
+            width: 80%;
+            max-width: 300px;
+            .email_box{
+                h3{
+                    margin-bottom: 10px;
+                }
+                input{
+                    width: 100%;
+                    padding: 10px 0;
+                }
+            }
+            .name_box{
+                h3{
+                    margin-bottom: 10px;
+                }
+                display: flex;
+                justify-content: space-between;
+                input{
+                    width: 100%;
+                    padding: 10px 0;
+                }
+                .name_box2:first-child{
+                    margin-right: 20px;
+                }
+            }
+            .message_box{
+                h3{
+                    margin-bottom: 10px;
+                }
+                textarea{
+                    width: 100%;
+                }
+            }
+            .subs_send_box{
+                margin-top: 15px;
+                display: flex;
+                justify-content: space-between;
+                label{
+                    span{
+                        margin-left: 5px;
+                    }
+                }
+                .send_btn{
+                    span{
+                        background-color: #ffc600;
+                        padding: 5px 50px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
     }
 }
