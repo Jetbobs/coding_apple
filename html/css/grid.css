@@ -1,0 +1,18 @@
+.grid_container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+}
+.grid_container .grid_nav {
+  grid-column: 1/5;
+  border: 1px solid #000;
+}
+.grid_container .grid_sidebar {
+  grid-row: 2/4;
+  border: 1px solid #000;
+}
+.grid_container .main {
+  grid-row: 2/4;
+  grid-column: 2/5;
+  border: 1px solid #000;
+}/*# sourceMappingURL=grid.css.map */

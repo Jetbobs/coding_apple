@@ -1,7 +1,7 @@
 @use './default';
 
 //extend
-.list_default{
+.list_default {
     width: 300px;
     height: 50px;
     font-size: 16px;
@@ -14,8 +14,9 @@
     align-items: center;
     padding-left: 20px;
 }
+
 //mixin
-@mixin alert_default($bg,$ft){
+@mixin alert_default($bg, $ft) {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -25,52 +26,135 @@
     border-radius: 10px;
     background-color: $bg;
     color: $ft;
-    span{
+
+    span {
         font-weight: bold;
     }
 }
+
 //extend ex
-.list_active{
+.list_active {
     @extend .list_default;
     background-color: #007bff;
     color: #fff;
 }
-.list_disable{
+
+.list_disable {
     @extend .list_default;
 }
+
 //mixin ex
-.alerts_green{
-    @include alert_default(#dfefd8,#6a8f6f);
+.alerts_green {
+    @include alert_default(#dfefd8, #6a8f6f);
 
 }
-.alerts_blue{
-    @include alert_default(#d9ecf6,#658696);
-}
-.alerts_yellow{
-    @include alert_default(#fcf8e2,#997f63);
+
+.alerts_blue {
+    @include alert_default(#d9ecf6, #658696);
 }
 
-.ani_text{
+.alerts_yellow {
+    @include alert_default(#fcf8e2, #997f63);
+}
+
+.ani_text {
     color: #000;
     text-align: center;
 }
-.ani_text:hover{
+
+.ani_text:hover {
     animation-name: 와리가리;
     animation-duration: 1s;
 }
+
 @keyframes 와리가리 {
     0% {
         transform: translateX(0px);
     }
+
     25% {
         transform: translateX(-100px);
     }
 
-    75%{
+    75% {
         transform: translateX(100px);
     }
 
     100% {
         transform: translateX(0px);
+    }
+}
+
+.shake {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: #87ceeb;
+    color: #fff;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    .shake_btn {
+        span {
+            font-weight: bold;
+        }
+    }
+}
+.shake:hover {
+    animation-name: 흔들흔들;
+    animation-duration: 0.5s;
+}
+
+
+@keyframes 흔들흔들 {
+    0% {
+        transform-origin:50% 50%;
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform-origin:50% 50%;
+        transform: rotate(15deg);
+    }
+
+    75% {
+        transform-origin:50% 50%;
+        transform: rotate(-15deg);
+    }
+
+    100% {
+        transform-origin:50% 50%;
+        transform: rotate(0deg);
+    }
+}
+.plus{
+    text-align: center;
+    margin: 150px auto;
+    font-size: 70px;
+    cursor: pointer;
+    width: 84px;
+    .plus_btn{
+        span{
+            font-size: 50px;
+        }
+    }
+}
+.plus:hover{
+    animation-name: 플러스;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+}
+
+@keyframes 플러스 {
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-15deg);
+    }
+    100%{
+        transform: scale(2.0) rotate(45deg);
     }
 }
