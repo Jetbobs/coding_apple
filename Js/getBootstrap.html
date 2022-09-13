@@ -53,7 +53,7 @@
           <div class="modal-footer">
             <form action="success.html">
               <div class="my-3">
-                <input type="text" class="form-control" />
+                <input type="text" id="email" class="form-control" />
               </div>
               <div class="my-3">
                 <input type="password" class="form-control" />
@@ -77,6 +77,10 @@
       </div>
     </div>
     <button id="modalPopup">로그인하기</button>
+    <span class="badge bg-dark">Dark 🔄</span>
+    <div class="alert alert-danger">
+      <span id="txt"></span>초 이내 구매시 사은품 증정!
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -106,6 +110,33 @@
           document.querySelectorAll(".modal")[0].style.transition = "all 1s";
           document.querySelectorAll(".modal")[0].style.opacity = "0";
         });
+        document.getElementById('email').addEventListener('input',function(){
+
+        })
+    </script>
+    <script>
+      let count = 0;
+      document.getElementsByClassName('badge')[0].addEventListener('click',function(){
+        count++;
+        if(count % 2 == 0 ){
+          document.getElementsByClassName('badge')[0].innerHTML = 'Dark';
+        } else {
+          document.getElementsByClassName('badge')[0].innerHTML = 'Light';
+        }
+      })
+    </script>
+    <script>
+      let counter = 5;
+      document.getElementById('txt').innerHTML = counter;
+      setInterval(function(){
+        counter--;
+        if(counter >= 0){
+          document.getElementById('txt').innerHTML = counter;
+        }
+      }, 1000)
+      
     </script>
   </body>
 </html>
+<!-- 1초마다 1초 감소해야함 -->
+<!-- 0초가 되면 사라져야함 -->
