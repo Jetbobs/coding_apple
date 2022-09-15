@@ -15,7 +15,6 @@
   background-color: rgba(0, 0, 0, 0.7);
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: all 1s;
   transition: all 1s;
 }
 
@@ -25,8 +24,15 @@
 }
 
 .modal-footer {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  justify-content: flex-start;
 }
-/*# sourceMappingURL=bootstrap.css.map */
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+.navbar .navbar-brand {
+  font-size: 30px;
+  transition: all 1s;
+}/*# sourceMappingURL=bootstrap.css.map */

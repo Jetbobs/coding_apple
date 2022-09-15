@@ -82,7 +82,12 @@
       <span id="txt"></span>초 이내 구매시 사은품 증정!
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
+<div style="height: 1000px;">
 
+</div>
+<div id="scroll_alert" style="width: 200px; height: 100px; overflow-y: scroll;">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
+</div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -135,6 +140,25 @@
         }
       }, 1000)
       
+    </script>
+    <script>
+      function scrollEnd(){
+        let scroll_a_height = document.getElementById('scroll_alert').scrollTop;
+        let scroll_real_height = document.getElementById('scroll_alert').scrollHeight;
+        let scroll_ele_height = document.getElementById('scroll_alert').clientHeight;
+        let total_scroll_height = scroll_a_height + scroll_ele_height;
+  
+        if(total_scroll_height == scroll_real_height){
+          alert('스크롤의 끝이다')
+        }
+      }
+      window.addEventListener('scroll',function(){
+        let scroll_height =  window.scrollY;
+        if(scroll_height >= 100){
+          document.querySelector('.navbar-brand').style.fontSize = "10px";
+        }
+      })
+      document.getElementById('scroll_alert').addEventListener('scroll',scrollEnd, {passive:true});
     </script>
   </body>
 </html>

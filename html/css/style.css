@@ -5,21 +5,17 @@ body .profile img {
   margin-right: auto;
   margin-top: 20px;
 }
-
 body .profile h3 {
   text-align: center;
   font-size: 16px;
 }
-
 body .profile p {
   text-align: center;
 }
-
 body .profile p span {
   color: red;
   font-weight: bold;
 }
-
 body .profile .box {
   width: 100px;
   background-color: cadetblue;
@@ -29,10 +25,8 @@ body .profile .box {
   border-radius: 5px;
   font-size: 10px;
   color: #fff;
-  -webkit-box-shadow: 5px 5px 5px 5px gray;
-          box-shadow: 5px 5px 5px 5px gray;
+  box-shadow: 5px 5px 5px 5px gray;
 }
-
 body nav ul li {
   display: inline-block;
   text-align: center;
@@ -40,18 +34,15 @@ body nav ul li {
   padding: 10px;
   border-radius: 5px;
 }
-
 body nav ul li a {
   font-size: 16px;
   text-decoration: none;
   color: #000;
 }
-
 body .container {
   width: 800px;
   margin: 0 auto;
 }
-
 body .container .content {
   display: inline-block;
   width: 80%;
@@ -59,32 +50,25 @@ body .container .content {
   background-color: #eee;
   float: left;
 }
-
 body .container .content .user img {
   float: left;
   width: 50px;
 }
-
 body .container .content .user .user_name {
   float: left;
 }
-
 body .container .content .user .user_name h4 {
   margin: 0;
 }
-
 body .container .content .user .user_name p {
   margin: 0;
 }
-
 body .container .content .user .for_clear {
   clear: both;
 }
-
 body .container .content .user .main_content {
   margin-top: 20px;
 }
-
 body .container .content_img {
   width: 20%;
   height: 200px;
@@ -92,8 +76,6 @@ body .container .content_img {
   display: inline-block;
   float: right;
 }
-
 body .container .content_img img {
   width: 100%;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

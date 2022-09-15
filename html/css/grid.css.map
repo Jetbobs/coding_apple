@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAA;EACX,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,uBAAuB;EAC9C,kBAAkB,EAAE,iBAAiB;CAcxC;;AAjBD,AAII,eAJW,CAIX,SAAS,CAAA;EACL,WAAW,EAAE,KAAK;EAClB,MAAM,EAAE,cAAc;CACzB;;AAPL,AAQI,eARW,CAQX,aAAa,CAAA;EACT,QAAQ,EAAE,GAAG;EACb,MAAM,EAAE,cAAc;CACzB;;AAXL,AAYI,eAZW,CAYX,KAAK,CAAA;EACD,QAAQ,EAAE,KAAK;EACf,WAAW,EAAE,KAAK;EAClB,MAAM,EAAE,cAAc;CACzB",
-    "sources": [
-        "grid.scss"
-    ],
-    "names": [],
-    "file": "grid.css"
-}
+{"version":3,"sources":["grid.scss","grid.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8CAAA;EACA,qCAAA;ACCJ;ADAI;EACI,gBAAA;EACA,sBAAA;ACER;ADAI;EACI,aAAA;EACA,sBAAA;ACER;ADAI;EACI,aAAA;EACA,gBAAA;EACA,sBAAA;ACER","file":"grid.css"}
