@@ -1,18 +1,21 @@
 @charset "UTF-8";
-ul, li {
-  list-style: none;
-}
-
-.list_default, .list_disable, .list_active {
+@use './default';
+.list_default, .list_active, .list_disable {
   width: 300px;
   height: 50px;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.8);
   border: 1px solid #eee;
   text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: left;
-  align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 20px;
 }
 
@@ -22,9 +25,15 @@ ul, li {
 }
 
 .alerts_green {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: left;
-  align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 20px;
   font-size: 16px;
   margin-bottom: 10px;
@@ -32,14 +41,21 @@ ul, li {
   background-color: #dfefd8;
   color: #6a8f6f;
 }
+
 .alerts_green span {
   font-weight: bold;
 }
 
 .alerts_blue {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: left;
-  align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 20px;
   font-size: 16px;
   margin-bottom: 10px;
@@ -47,14 +63,21 @@ ul, li {
   background-color: #d9ecf6;
   color: #658696;
 }
+
 .alerts_blue span {
   font-weight: bold;
 }
 
 .alerts_yellow {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: left;
-  align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 20px;
   font-size: 16px;
   margin-bottom: 10px;
@@ -62,6 +85,7 @@ ul, li {
   background-color: #fcf8e2;
   color: #997f63;
 }
+
 .alerts_yellow span {
   font-weight: bold;
 }
@@ -80,37 +104,52 @@ ul, li {
 
 @-webkit-keyframes 와리가리 {
   0% {
-    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
   }
   25% {
-    transform: translateX(-100px);
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
   }
   75% {
-    transform: translateX(100px);
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
   }
   100% {
-    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
   }
 }
 
 @keyframes 와리가리 {
   0% {
-    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
   }
   25% {
-    transform: translateX(-100px);
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
   }
   75% {
-    transform: translateX(100px);
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
   }
   100% {
-    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
   }
 }
+
 .shake {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: auto;
   background-color: #87ceeb;
   color: #fff;
@@ -118,6 +157,7 @@ ul, li {
   width: 80px;
   height: 30px;
 }
+
 .shake .shake_btn span {
   font-weight: bold;
 }
@@ -131,41 +171,58 @@ ul, li {
 
 @-webkit-keyframes 흔들흔들 {
   0% {
-    transform-origin: 50% 50%;
-    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   25% {
-    transform-origin: 50% 50%;
-    transform: rotate(15deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
   }
   75% {
-    transform-origin: 50% 50%;
-    transform: rotate(-15deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
   100% {
-    transform-origin: 50% 50%;
-    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
 }
 
 @keyframes 흔들흔들 {
   0% {
-    transform-origin: 50% 50%;
-    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   25% {
-    transform-origin: 50% 50%;
-    transform: rotate(15deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
   }
   75% {
-    transform-origin: 50% 50%;
-    transform: rotate(-15deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
   100% {
-    transform-origin: 50% 50%;
-    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
 }
+
 .plus {
   text-align: center;
   margin: 150px auto;
@@ -173,6 +230,7 @@ ul, li {
   cursor: pointer;
   width: 84px;
 }
+
 .plus .plus_btn span {
   font-size: 50px;
 }
@@ -184,29 +242,37 @@ ul, li {
           animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  transform-origin: center;
+  -webkit-transform-origin: center;
+          transform-origin: center;
 }
 
 @-webkit-keyframes 플러스 {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   25% {
-    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
   100% {
-    transform: scale(2) rotate(45deg);
+    -webkit-transform: scale(2) rotate(45deg);
+            transform: scale(2) rotate(45deg);
   }
 }
 
 @keyframes 플러스 {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   25% {
-    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
   100% {
-    transform: scale(2) rotate(45deg);
+    -webkit-transform: scale(2) rotate(45deg);
+            transform: scale(2) rotate(45deg);
   }
-}/*# sourceMappingURL=style3.css.map */
+}
+/*# sourceMappingURL=style3.css.map */

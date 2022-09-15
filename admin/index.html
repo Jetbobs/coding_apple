@@ -1,106 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/admin/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/admin/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Document</title>
-</head>
-<body>
+    <title>Admin Test</title>
+  </head>
+  <body>
     <div class="container">
-        <div class="sidebar">
-            <div class="icon_container">
-                <div class="icons"><i class="fa-solid fa-house"></i>
-                    <p>Home</p>
-                </div>
-                <div class="icons"><i class="fa-solid fa-headphones"></i>
-                    <p>Services</p></div>
-                <div class="icons"><i class="fa-solid fa-flag"></i>
-                    <p>Alerts</p></div>
-                <div class="icons">                <i class="fa-solid fa-chart-pie"></i>
-                    <p>Stats</p></div>
-            </div>
+      <div class="sidebar">
+        <div class="icon_container">
+          <div class="icons">
+            <i class="fa-solid fa-house"></i>
+            <p>Home</p>
+          </div>
+          <div class="icons">
+            <i class="fa-solid fa-headphones"></i>
+            <p>Services</p>
+          </div>
+          <div class="icons">
+            <i class="fa-solid fa-flag"></i>
+            <p>Alerts</p>
+          </div>
+          <div class="icons">
+            <i class="fa-solid fa-chart-pie"></i>
+            <p>Stats</p>
+          </div>
         </div>
-        <div class="content">
-            <div class="header">
-                <div class="input_container">
-                    <input type="text" placeholder="Search">
-                    <button class="search_btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <div class="login_container">
-                    <i class="fa-solid fa-bell"></i>
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>Minny Park</p>
-                </div>
-            </div>
-            <div class="main">
-                <div class="title">
-                    <h1>DashBoard</h1>
-                </div>
-                <div class="card_container">
-                    <div class="card_blue">
-                        <div class="card_info">
-                            <p class="card_title">Earnings (Monthly)</p>
-                            <p class="card_numbers">$400,000</p>
-                        </div>
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                    <div class="card_green">
-                        <div class="card_info">
-                            <p class="card_title">Earnings (Monthly)</p>
-                            <p class="card_numbers">$400,000</p>
-                        </div>
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                    <div class="card_purple">
-                        <div class="card_info">
-                            <p class="card_title">Earnings (Monthly)</p>
-                            <p class="card_numbers">$400,000</p>
-                        </div>
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                    <div class="card_yellow">
-                        <div class="card_info">
-                            <p class="card_title">Earnings (Monthly)</p>
-                            <p class="card_numbers">$400,000</p>
-                        </div>
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                </div>
-                <div class="chart_tasks_container">
-                    <div class="chart_container">
-                        <div class="chart_title">
-                            <h3>Earning OverView</h3>
-                        </div>
-                        <div>
-                            <canvas id="myChart" width="400" height="300"></canvas>
-                          </div>
-                    </div>
-                    <div class="tasks_container">
-                        <div class="tasks_title">
-                            <h3>Tasks</h3>
-                        </div>
-                        <div class="tasks">
-                            <p>Brrowed Items</p>
-                        </div>
-                        <div class="tasks">
-                            <p>Brrowed Items</p>
-                        </div>
-                        <div class="tasks">
-                            <p>Brrowed Items</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="content">
+        <div class="header">
+          <div class="input_container">
+            <input type="text" placeholder="Search" />
+            <button class="search_btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+          <div class="login_container">
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-envelope"></i>
+            <p>Minny Park</p>
+          </div>
         </div>
+        <div class="main">
+          <div class="title">
+            <h1>DashBoard</h1>
+          </div>
+          <div class="card_container">
+            <div class="card_blue">
+              <div class="card_info">
+                <p class="card_title">Earnings (Monthly)</p>
+                <p class="card_numbers">$400,000</p>
+              </div>
+              <i class="fa-solid fa-calendar"></i>
+            </div>
+            <div class="card_green">
+              <div class="card_info">
+                <p class="card_title">Earnings (Monthly)</p>
+                <p class="card_numbers">$400,000</p>
+              </div>
+              <i class="fa-solid fa-calendar"></i>
+            </div>
+            <div class="card_purple">
+              <div class="card_info">
+                <p class="card_title">Earnings (Monthly)</p>
+                <p class="card_numbers">$400,000</p>
+              </div>
+              <i class="fa-solid fa-calendar"></i>
+            </div>
+            <div class="card_yellow">
+              <div class="card_info">
+                <p class="card_title">Earnings (Monthly)</p>
+                <p class="card_numbers">$400,000</p>
+              </div>
+              <i class="fa-solid fa-calendar"></i>
+            </div>
+          </div>
+          <div class="chart_tasks_container">
+            <div class="chart_container">
+              <div class="chart_title">
+                <h3>Earning OverView</h3>
+              </div>
+              <div>
+                <canvas id="myChart" width="400" height="300"></canvas>
+              </div>
+            </div>
+            <div class="tasks_container">
+              <div class="tasks_title">
+                <h3>Tasks</h3>
+              </div>
+              <div class="tasks">
+                <p>Brrowed Items</p>
+              </div>
+              <div class="tasks">
+                <p>Brrowed Items</p>
+              </div>
+              <div class="tasks">
+                <p>Brrowed Items</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script>
+<<<<<<< HEAD
         const labels = [
           'January',
           'February',
@@ -136,3 +150,32 @@
       </script>
 </body>
 </html>
+=======
+      const labels = ["January", "February", "March", "April", "May", "June"];
+
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+            label: "My First dataset",
+            backgroundColor: "rgb(255, 99, 132)",
+            borderColor: "rgb(255, 99, 132)",
+            data: [0, 10, 5, 2, 20, 30, 45],
+          },
+        ],
+      };
+
+      const config = {
+        type: "line",
+        data: data,
+        options: {
+          maintainAspectRatio: false,
+        },
+      };
+    </script>
+    <script>
+      const myChart = new Chart(document.getElementById("myChart"), config);
+    </script>
+  </body>
+</html>
+>>>>>>> ba8c05db97fc9be4626f0ceb98876bc7f7791737

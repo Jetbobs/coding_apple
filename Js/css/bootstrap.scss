@@ -1,0 +1,24 @@
+.list-group {
+  display: none;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.modal {
+  display: block;
+  background-color: rgba($color: #000000, $alpha: 0.7);
+  //   transition: all 1s;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s;
+}
+.modal_show {
+  visibility: visible;
+  opacity: 1;
+}
+.modal-footer {
+  justify-content: flex-start;
+}
