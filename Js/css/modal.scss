@@ -5,9 +5,15 @@
     background : rgba(0,0,0,0.5);
     z-index : 5;
     padding: 30px;
+    transition: all 1s;
+    //modal
+    display: none;
     .white-bg {
         background: white;
         border-radius: 5px;
         padding: 30px;
       } 
+  }
+  .show-modal{
+    display: block;
   }

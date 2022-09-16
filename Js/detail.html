@@ -71,12 +71,57 @@
           <p>배송정보입니다. Shipping</p>
         </div>
       </div> 
+      <button id="login">로그인</button>
       <div class="black-bg">
         <div class="white-bg">
           <h4>로그인하세요</h4>
-          <button class="btn btn-danger" id="close">닫기</button>
+          <form action="success.html">
+            <div class="my-3">
+                <input type="text" class="form-control" id="email">
+            </div>
+            <div class="my-3">
+                <input type="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" id="send">전송</button>
+            <button type="button" class="btn btn-danger" id="close">닫기</button>
+          </form>
         </div>
       </div> 
+      <div class="container mt-3">
+        <div class="card p-3">
+            상품명 / 가격
+        </div>
+      </div>
+      <a href="https://develop-sense.tistory.com" id="urlConnect">이동테스트</a>
       <script src="./js/tab.js"></script>
+      <script>
+        //로그인 버튼 모달창 팝업
+        document.getElementById('login').addEventListener('click', function(){
+            document.getElementsByClassName('black-bg')[0].classList.add('show-modal');
+        })
+        //닫기 버튼 클릭시 모달창 사라짐
+        document.getElementById('close').addEventListener('click',function(){
+            document.getElementsByClassName('black-bg')[0].classList.remove('show-modal');
+        })
+        document.getElementsByClassName('black-bg')[0].addEventListener('click',function(e){
+            console.log(e.target);
+            let target = e.target;
+            let blackBg = document.getElementsByClassName('black-bg')[0];
+            if(target == blackBg){
+                document.getElementsByClassName('black-bg')[0].classList.remove('show-modal');
+            }
+        })
+      </script>
+      <script>
+        document.getElementById('urlConnect').addEventListener('click',function(){
+            event.preventDefault();
+        })
+      </script>
+      <script>
+        let car = ['소나타', 50000, 'white']; // array
+        let car2 = {name: '소나타', price: 50000} // object, key : value
+        console.log(car2['name'])
+        console.log(car2.price)
+      </script>
   </body>
 </html>
