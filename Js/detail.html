@@ -53,6 +53,9 @@
         .show {
           display: block;
         }
+        #shirt-size{
+            display: none;
+        }
       </style>
       
       <div class="container mt-5">
@@ -89,9 +92,22 @@
       </div> 
       <div class="container mt-3">
         <div class="card p-3">
-            상품명 / 가격
+            <span class="car-title">상품명</span>
+            <span class="car-price">가격</span>
         </div>
       </div>
+      <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+          <option>모자</option>
+          <option>셔츠</option>
+          <option>바지</option>
+        </select>
+        <select class="form-select mt-2" id="shirt-size">
+            <option>95</option>
+            <option>100</option>
+          </select>
+    </form>
       <a href="https://develop-sense.tistory.com" id="urlConnect">이동테스트</a>
       <script src="./js/tab.js"></script>
       <script>
@@ -119,9 +135,71 @@
       </script>
       <script>
         let car = ['소나타', 50000, 'white']; // array
-        let car2 = {name: '소나타', price: 50000} // object, key : value
-        console.log(car2['name'])
-        console.log(car2.price)
+        let car2 = {name: '소나타', price: [50000, 3000, 4000]} // object, key : value
+
+        document.querySelector('.car-price').innerHTML = car2['price'];
+      </script>
+      <script>
+        let  pants = [28,30,32,34];
+        let shirts = [95,100,105];
+
+        document.querySelectorAll('.form-select')[0].addEventListener('input',function(){
+            if(document.querySelectorAll('.form-select')[0].value == "셔츠"){
+            document.getElementById('shirt-size').style.display = "block";
+        } else if(document.querySelectorAll('.form-select')[0].value == "바지"){
+            // document.querySelectorAll('.form-select')[1].insertAdjacentHTML('beforeend',"<option>28</option> <option>30</option>")
+            pants.forEach(function(a){
+                document.querySelectorAll('.form-select')[1].insertAdjacentHTML('beforeend',`<option>${a}</option>`)
+            })
+        }
+         else{
+            document.getElementById('shirt-size').style.display = "none";
+        };
+        }) 
+      </script>
+      <script>
+        let obj = {name : 'kim', age : 20}
+
+        for (let key in obj){
+            console.log(obj[key]);
+        }
+
+        let 출석부 = ['흥민','영희','철수','재석','철수'];
+
+        function 이름찾기(e){
+            출석부.forEach(function(ele){
+                if(ele == e){
+                    console.log("있어요");
+                    return;
+                }
+            })
+    }
+      </script>
+      <script>
+        // let num1 = [1,2,3,4,5,6,7,8,9];
+        // let num2 = [1,2,3,4,5,6,7,8,9];
+
+        // for(let n = 0; n < num1.length; n++){
+        //     for(let f = 0; f <num2.length; f++){
+        //         let result = num1[n] * num2[f];
+        //         console.log(result);
+        //     }
+        // }
+
+            function 함수(arr,b){
+                let result = 0;
+                for(let i = 0; i < arr.length; i++){
+                result = result + arr[i];
+            }
+            console.log(result);
+            let ave = 0;
+            ave = result/arr.length;
+            if(ave > b ){
+                console.log("평균보다" + (ave - b) + "떨어졌네요")
+            } else if (ave < b){
+                console.log("평균보다" + (b - ave) + "올랐네요")
+            }
+            }
       </script>
   </body>
 </html>
