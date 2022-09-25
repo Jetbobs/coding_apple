@@ -1,0 +1,13 @@
+.slide_container {
+  width: 300vw;
+}
+
+.slide_container .slide_box {
+  width: 100vw;
+  float: left;
+}
+
+.slide_container .slide_box img {
+  width: 100%;
+}
+/*# sourceMappingURL=slide.css.map */

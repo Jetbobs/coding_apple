@@ -15,6 +15,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: all 1s;
   transition: all 1s;
 }
 
@@ -24,7 +25,9 @@
 }
 
 .modal-footer {
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .navbar {
@@ -32,8 +35,10 @@
   width: 100%;
   z-index: 5;
 }
+
 .navbar .navbar-brand {
   font-size: 30px;
+  -webkit-transition: all 1s;
   transition: all 1s;
 }
 
@@ -45,8 +50,10 @@
   z-index: 5;
   padding: 30px;
 }
+
 .black-bg .white-bg {
   background: white;
   border-radius: 5px;
   padding: 30px;
-}/*# sourceMappingURL=bootstrap.css.map */
+}
+/*# sourceMappingURL=bootstrap.css.map */

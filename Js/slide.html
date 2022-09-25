@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/slide.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="overflow: hidden">
+        <div class="slide_container">
+            <div class="slide_box">
+                <img src="../img/car1.png" alt="" draggable="false">
+            </div>
+            <div class="slide_box">
+                <img src="../img/car2.png" alt="" draggable="false">
+            </div>
+            <div class="slide_box">
+                <img src="../img/car3.png" alt="" draggable="false">
+            </div>
+        </div>
+    </div>
+    <button class="slide_1">1</button>
+    <button class="slide_2">2</button>
+    <button class="slide_3">3</button>
+    <button class="next">다음</button>
+    <script>
+        const slide1 = document.getElementsByClassName('slide_1')[0];
+        const slide2 = document.getElementsByClassName('slide_2')[0];
+        const slide3 = document.getElementsByClassName('slide_3')[0];
+        const slide_container = document.getElementsByClassName('slide_container')[0];
+        slide2.addEventListener('click',function(){
+            slide_container.style.transform =  "translateX(-100vw)";
+        })
+        slide3.addEventListener('click',function(){
+            slide_container.style.transform =  "translateX(-200vw)";
+        })
+        slide1.addEventListener('click',function(){
+            slide_container.style.transform = "translateX(0vw)"
+        })
+        let  pic = 1;
+        document.querySelector('.next').addEventListener('click',function(){
+            slide_container.style.transform = `translateX(-${pic*100}vw)`;
+            pic++;
+        })
+    </script>
+    <script>
+    </script>
+    <script>
+        let m_start = 0;
+        let m_move = 0;
+        let m_down = false;
+        let m_up = false;
+        let m_gap = 0;
+        document.querySelectorAll('.slide_box')[0].addEventListener('mousedown',function(e){
+         m_start = e.clientX;
+         m_down = true;
+        })
+        document.querySelectorAll('.slide_box')[0].addEventListener('mousemove',function(e){
+            m_move = e.clientX;
+            m_gap = e.clientX - m_start;
+            console.log(m_gap);
+            if(m_down == true){
+                slide_container.style.transform = `translateX( ${e.clientX - m_start}px )`
+            }
+            }
+            
+        )
+        document.querySelectorAll('.slide_box')[0].addEventListener('mouseup',function(e){
+            m_down = false;
+            if(m_gap < -100){
+                slide_container.style.transform = 'translateX(-100vw)';
+                slide_container.style.transition = 'all 0.5s';
+            } else {
+                slide_container.style.transform = 'translateX(0vw)'
+                slide_container.style.transition = 'all 0.5s';
+            }
+            setTimeout(()=>{
+      document.querySelector('.slide_container').style.transition = 'none'
+    }, 500)
+        })
+    </script>
+</body>
+
+</html>

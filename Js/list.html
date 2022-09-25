@@ -20,23 +20,129 @@
 
 
         </div>
+        <button class="btn btn-danger" id="more">더보기</button>
+    </div>
+
+    <div class="container">
+        <div class="row" id="row1"></div>
+    </div>
+    <div class="container">
+        <div class="row"></div>
+    </div>
+
+    <div class="container my-3">
+        <button class="btn btn-danger" id="price">가격순정렬</button>
     </div>
     <script>
+        let 어레이 = [7,3,5,2,40];
+        어레이.sort(function(a,b){
+            return a-b
+        });
+        console.log(어레이)
+
         var products = [
             { id: 0, price: 70000, title: 'Blossom Dress' },
             { id: 1, price: 50000, title: 'Springfield Shirt' },
             { id: 2, price: 60000, title: 'Black Monastery' }
         ];
-            products.forEach(function(e){
-                document.querySelector('.row').insertAdjacentHTML('beforeend', `            <div class="col-sm-4">
+
+        // let titles = {1: 'cart', 2:'p_price', 3:'p_img'};
+        // let gets = {1:'get_pro', 2: 'get_price', 3:'get_img'};
+        // let carts = {1:'cart', 2:'cart_price'}
+        products.forEach(function (e) {
+            document.querySelector('.row').insertAdjacentHTML('beforeend', `<div class="col-sm-4">
+              <img src="https://via.placeholder.com/600" class="w-100">
+              <h5>${e.title}</h5>
+              <p>가격 : ${e.price}</p>
+              <button class="buy">구매</button>
+            </div>`)
+        })
+        for(let i = 0; i < products.length; i++){
+            document.querySelectorAll('.buy')[i].addEventListener('click',function(e){
+            let title = e.target.previousElementSibling.previousElementSibling.innerText;
+            let p_price = e.target.previousElementSibling.innerHTML;
+            let p_img = e.target.previousElementSibling.previousElementSibling.previousElementSibling.src;
+            console.log(p_img)
+            console.log(title);
+            if(localStorage.getItem('cart') != null){
+                let get_pro = JSON.parse(localStorage.getItem('cart'));
+                let get_price = JSON.parse(localStorage.getItem('cart_price'));
+                let get_img = JSON.parse(localStorage.getItem('cart_img'));
+                console.log(get_pro);
+                get_pro.push(title);
+                get_price.push(p_price);
+                get_img.push(p_img);
+                localStorage.setItem('cart',JSON.stringify(get_pro));
+                localStorage.setItem('cart_price',JSON.stringify(get_price));
+                localStorage.setItem('cart_img',JSON.stringify(get_img));
+            } else {
+                localStorage.setItem('cart',JSON.stringify([title]));
+                localStorage.setItem('cart_price',JSON.stringify([p_price]));
+                localStorage.setItem('cart_img',JSON.stringify([p_img]));
+            }
+        })
+        }
+    </script>
+    <script>
+        let count = 0;
+        document.getElementById('more').addEventListener('click', function () {
+            count++;
+            if (count == 1) {
+                console.log(count)
+                $.get('https://codingapple1.github.io/js/more1.json').done((data) => {
+                    data.forEach(function (e) {
+                        document.querySelectorAll('.row')[1].insertAdjacentHTML('beforeend', `<div class="col-sm-4">
               <img src="https://via.placeholder.com/600" class="w-100">
               <h5>${e.title}</h5>
               <p>가격 : ${e.price}</p>
             </div>`)
+                    })
+                })
+            } else if(count == 2){
+                $.get('https://codingapple1.github.io/js/more2.json').done((data2) => {
+                console.log(count);
+                
+                    data2.forEach(function (e) {
+                        document.querySelectorAll('.row')[2].insertAdjacentHTML('beforeend', `<div class="col-sm-4">
+              <img src="https://via.placeholder.com/600" class="w-100">
+              <h5>${e.title}</h5>
+              <p>가격 : ${e.price}</p>
+            </div>`)
+                    })
+                
             })
+            }
+        })
+    </script>
+    <script>
+        document.getElementById('price').addEventListener('click',function(){
+            let products2=products.filter(function(a){
+                return a.price <= 60000
+            })
+            products.sort(function(a,b){
+                if(a.title < b.title){
+                    return 1;
+                } else if(a.title > b.title) {
+                    return -1;
+                }
+            })
+            console.log(products)
+            document.getElementById('row1').innerHTML = ' ';
+            products.forEach(function (e) {
+            document.querySelector('.row').insertAdjacentHTML('beforeend', `<div class="col-sm-4">
+              <img src="https://via.placeholder.com/600" class="w-100">
+              <h5>${e.title}</h5>
+              <p>가격 : ${e.price}</p>
+            </div>`)
+        })
 
+        })
     </script>
     <script src="./js/tab.js"></script>
 </body>
 
 </html>
+
+<div id="cart">
+
+</div>
