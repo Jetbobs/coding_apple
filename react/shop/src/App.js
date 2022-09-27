@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import shoesData from './js/data';
 import { Route, Routes, Link , useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/detail'
@@ -13,6 +13,8 @@ function App() {
 
   let [shoes,setShoes] = useState(shoesData);
   let navigate = useNavigate();
+  let [count, setCount] = useState(0);
+
 
 
 
@@ -62,14 +64,29 @@ function App() {
         </div>
       </div>
       <button onClick={()=>{ 
+        console.log(count)
+        setCount(count+1);
+        if(count == 1){
         axios.get('https://codingapple1.github.io/shop/data2.json').then((data)=>{
           let copy = [...shoes,...data.data];
-          console.log(data.data)
           setShoes(copy);
+          console.log(count)
         })
         .catch(()=>{
           console.log('실패함 ㅅㅂ')
-        })
+        })} else if( count == 2){
+          axios.get('https://codingapple1.github.io/shop/data3.json').then((data)=>{
+            let copy = [...shoes,...data.data];
+            setShoes(copy);
+            console.log(count)
+          })
+          .catch(()=>{
+            console.log('실패함 ㅅㅂ')
+          })
+        } else if(count >= 3) {
+          window.alert('더이상 상품 없어요!')
+          console.log(count)
+        }
        }}>버튼</button>
       {/* <Route path='/detail/:id' element={<Detail shoes={shoes}></Detail>}></Route> */}
     </div>
