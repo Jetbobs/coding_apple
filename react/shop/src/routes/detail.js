@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from 'react-bootstrap'
-
+ 
 
 
 function Detail(props) {
@@ -26,6 +26,17 @@ function Detail(props) {
     }
     },[]
   )
+
+  useEffect(()=>{
+    localStorage.setItem('watched',[findId.id]);
+
+    let getItems = localStorage.getItem('watched');
+    getItems = JSON.parse(getItems);
+    getItems.push(findId.id)
+    getItems = new Set(getItems);
+    getItems = Array.from(getItems);
+    localStorage.setItem('watched',JSON.stringify(getItems));
+  })
 
 
   return (

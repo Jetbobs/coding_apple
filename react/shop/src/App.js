@@ -2,11 +2,14 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import shoesData from './js/data';
 import { Route, Routes, Link , useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/detail'
 import axios from 'axios'
+import cart from './routes/Cart'
+import Cart from './routes/Cart';
+import { useQuery } from 'react-query';
 // import imgBg from './img/bg.png';
 
 function App() {
@@ -15,6 +18,16 @@ function App() {
   let navigate = useNavigate();
   let [count, setCount] = useState(0);
 
+  let result = useQuery('realData', ()=>{
+   return axios.get('https://codingapple1.github.io/userdata.json').then((a)=>{
+      return a.data;
+    })
+  })
+
+
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify( [] ))
+  },[]) 
 
 
 
@@ -30,23 +43,12 @@ function App() {
             <Link to='/'>홈</Link>
             <Link to='/detail'>상세페이지</Link>
           </Nav>
+          <Nav className='ms-auto'>{result.isLoading ? '로딩중' : result.data.name }</Nav>
         </Container>
       </Navbar>
 
       <Routes>
-        <Route path='/' element={<div>메인페이지임</div>}></Route>
-        <Route path='/detail/:id' element={<Detail shoes={shoes}/>}>
-        <Route path='*' element={<div>없는 페이지요</div>}></Route>
-        </Route>
-        <Route path='/about' element={<About/>}></Route>
-        <Route path='/event' element={<EventPage></EventPage>}>
-          <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
-          <Route path='two' element={<div>생일기념 쿠폰받기</div>}></Route>
-        </Route>
-        <Route path='*' element={<div>없는 페이지요</div>}></Route>
-      </Routes>
-
-      <div className="main-bg"></div>
+        <Route path='/' element={<div>      <div className="main-bg"></div>
       <div className="container">
         <div className="row">
           {/* components만 사용했을 때 */}
@@ -62,8 +64,13 @@ function App() {
             })
           }
         </div>
-      </div>
-      <button onClick={()=>{ 
+      </div></div>}></Route>
+        <Route path='/detail/:id' element={<Detail shoes={shoes}/>}>
+        <Route path='*' element={<div>없는 페이지요</div>}></Route>
+        </Route>
+        <Route path='/cart' element={<Cart/>}></Route>
+      </Routes>
+      <button style={{display:'none'}} onClick={()=>{ 
         console.log(count)
         setCount(count+1);
         if(count == 1){
