@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@500&display=swap');
+
+
+.App {
+  
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+
+  #header {
+    .navbar {
+      padding: 0;
+      //header container
+      .header-continer {
+        display: flex;
+        background-color: #204ecf;
+        height: 80px;
+        padding: 0 (calc((100vw-910px)/2));
+        margin: 0;
+        //logo
+        .logo-container {
+          display: flex;
+          justify-content: flex-end;
+          margin: 0;
+          width: calc(max(300px, ((100vw - 930px) / 2) - 0px));
+          img{
+            margin-right: 130px;
+          }
+          .header-logo {}
+        }
+        //가운데 링크들 container
+        .main-link-container{
+          //header 양옆 세로선
+          border-left: 1px solid #fff;
+          border-right: 1px solid #fff;
+          .title-container {
+            display: flex;
+            margin-left: 60px;
+            .nav-title {
+              color: #fff;
+              opacity: 0.9;
+              font-weight: 500;
+            }
+  
+            .nav-title:hover {
+              opacity: 1.0;
+            }
+          }
+        }
+
+        .search-container {
+          padding-left: 25px;
+          width: calc(max(300px, ((100vw - 930px) / 2) - 0px));
+          display: flex;
+          .search {
+            background-color: #204ecf;
+            border: 1px solid #204ecf;
+            svg{
+              margin-right: 10px;
+            }
+          }
+
+          .search:hover {
+            opacity: 1.0;
+          }
+        }
+      }
+    }
+  }
+  // 세로 선
+  .vertical-line{
+    display: flex;
+    width: 1px;
+    background-color: rgba(234,242,247,1.00);
+    height: 40px;
+  }
+}
