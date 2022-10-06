@@ -2,13 +2,35 @@
 
 
 .App {
-  
-  font-family: 'Open Sans', sans-serif;
+
+  font-family: Helvetica, sans-serif;
   text-align: center;
+
+  a,
+  a:visited,
+  a:link,
+  a:hover {
+    text-decoration: none;
+  }
+
+  ul,
+  li {
+    list-style: none;
+  }
+
+  *:hover,
+  *:focus {
+    outline: none;
+  }
+  h1,h2,h3,h4,h5,h6,p{
+    margin: 0;
+    padding: 0;
+  }
 
   #header {
     .navbar {
       padding: 0;
+
       //header container
       .header-continer {
         display: flex;
@@ -16,31 +38,37 @@
         height: 80px;
         padding: 0 (calc((100vw-910px)/2));
         margin: 0;
+
         //logo
         .logo-container {
           display: flex;
           justify-content: flex-end;
           margin: 0;
           width: calc(max(300px, ((100vw - 930px) / 2) - 0px));
-          img{
+
+          img {
             margin-right: 130px;
           }
+
           .header-logo {}
         }
+
         //가운데 링크들 container
-        .main-link-container{
+        .main-link-container {
           //header 양옆 세로선
           border-left: 1px solid #fff;
           border-right: 1px solid #fff;
+
           .title-container {
             display: flex;
             margin-left: 60px;
+
             .nav-title {
               color: #fff;
               opacity: 0.9;
               font-weight: 500;
             }
-  
+
             .nav-title:hover {
               opacity: 1.0;
             }
@@ -51,10 +79,12 @@
           padding-left: 25px;
           width: calc(max(300px, ((100vw - 930px) / 2) - 0px));
           display: flex;
+
           .search {
             background-color: #204ecf;
             border: 1px solid #204ecf;
-            svg{
+
+            svg {
               margin-right: 10px;
             }
           }
@@ -66,11 +96,184 @@
       }
     }
   }
+
+  // sidebar + main content Screen
+  #content-container {
+    display: flex;
+    // sidebar
+    #sidebar {
+      display: flex;
+      justify-content: flex-end;
+      width: calc(max(300px, ((100vw - 540px) / 2) - 0px));
+      height: calc(100vh - 80px);
+      background-color: #f5f7f9;
+      border-right: 1px solid rgba(211, 220, 228, 1.00);
+
+      .sidebar-menu-container {
+        padding: 16px 0 88px 0;
+        width: 300px;
+
+
+        //sidebar chapter
+        .sidebar-menu {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          text-align: left;
+
+          li {
+            box-sizing: content-box;
+          }
+
+          // sidebar chapter title
+          .sidebar-title {
+            font-size: 12px;
+            width: 243px;
+            padding: 8px 16px;
+            font-weight: 600;
+            color: #8899a8;
+          }
+                  // sidebar list  items
+        .sidebar-menu-list {
+          width: 243px;
+          padding: 8px 16px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 22px;
+          color: #5c6975;
+        }
+
+        // sidebar list  items hover
+        .sidebar-menu-list:hover {
+          background-color: rgb(236, 239, 241);
+        }
+          .sidebar-menu-list-container {
+
+            // // sidebar list  items
+            .sidebar-menu-list {
+              width: 243px;
+              padding: 8px 16px;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 22px;
+              color: #5c6975;
+            }
+
+            // // sidebar list  items hover
+            .sidebar-menu-list:hover {
+              background-color: rgb(236, 239, 241);
+            }
+          }
+        }
+      }
+    }
+    //main-content
+    #main-content{
+      display: flex;
+      width: 100%;
+      .main{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 0 5%;
+        text-align: left;
+        .main-title{
+          display: flex;
+          flex-direction: column;
+          padding-top: 24px;
+          h1{
+            color: rgba(59 , 69, 78, 1.00);
+            font-size: 48px;
+            line-height: 56px;
+            font-weight: 700;
+          }
+          .main-title-sub{
+            color: rgba(136,153,168,1.00);
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            margin-top: 16px;
+            margin-bottom: 24px;
+          }
+        }
+        .contents-container{
+          .contents-item{
+            padding-top: 40px;
+            .content-title{
+              font-size: 24px;
+              line-height: 36px;
+              font-weight: 700;
+              color: #3b454e;
+            }
+            .content-subtitle{
+              font-size: 16px;
+              line-height: 24px;
+              color: #3b454e;
+              font-weight: 700;
+              padding: 24px 0 8px 0;
+            }
+          }
+          .prev-next-btn-container{
+            display: flex;
+            justify-content: space-between;
+            .prev-next-btn{
+              padding: 16px;
+              border: 1px solid rgb(227, 232, 237);
+              border-radius: 5px;
+              display: flex;
+              width: 50%;
+              align-items: center;
+              justify-content: space-between;
+              .arrow-icon{
+                color: rgba(136,153,168,1.00);
+              }
+              .btn-text-container{
+                .btn-title{
+                  font-size: 12px;
+                  font-weight: 400;
+                  line-height: 18px;
+                  color: rgba(136,153,168,1.00);
+                }
+                .btn-dir{
+                  font-size: 16px;
+                  font-weight: 500;
+                  line-height: 24px;
+                  color: rgba(59 , 69, 78, 1.00);
+                }
+              }
+            }
+          }
+        }
+      }
+      .side-nav{
+        display: flex;
+        width:calc(max(220px, calc(100vw - max(300px, calc((100vw - 910px) / 2 - 0px)) - 320px - 80px - 80px - 0px)))
+      }
+    }
+  }
+
   // 세로 선
-  .vertical-line{
+  .vertical-line {
     display: flex;
     width: 1px;
-    background-color: rgba(234,242,247,1.00);
+    background-color: rgba(234, 242, 247, 1.00);
     height: 40px;
+  }
+
+  .menu-margin {
+    margin: 16px 0;
+  }
+
+  .menu-title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: #8899a8;
+  }
+  .ta-l{
+    text-align: left;
+  }
+  .ta-r{
+    text-align: right;
   }
 }
