@@ -91,8 +91,8 @@ function App() {
                 <h2 className='content-title'>Git</h2>
                 <p className="content-subtitle">Bash</p>
               </div>
-              <div className="prev-next-btn-container ta-r">
-                <div className="prev-next-btn">
+              <div className="prev-next-btn-container">
+                <div className="prev-next-btn  ta-r mar-r-10">
                   <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
                   <div className="btn-text-container">
                     <div className="btn-title">
@@ -103,7 +103,7 @@ function App() {
                     </div>
                   </div>
                 </div>
-                <div className="prev-next-btn ta-l">
+                <div className="prev-next-btn ta-l mar-l-10">
                   <div className="btn-text-container">
                     <div className="btn-title">
                       <p>Next</p>
@@ -114,6 +114,9 @@ function App() {
                   </div>
                   <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                 </div>
+              </div>
+              <div className="footer">
+                
               </div>
             </div>
           </div>
