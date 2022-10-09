@@ -225,6 +225,7 @@
               align-items: center;
               justify-content: space-between;
               cursor: pointer;
+              transition: all 0.2s;
               .arrow-icon{
                 color: rgba(136,153,168,1.00);
               }
@@ -254,12 +255,91 @@
           .footer{
             border-top: 1px solid rgb(227, 232, 237);
             margin-top: 24px;
+            color: rgba(136,153,168,1.0);
+            display: flex;
+            justify-content: space-between;
+            .modified-days{
+              line-height: 22px;
+              font-size: 14px;
+              font-weight: 400;
+              display: flex;
+              align-items: center;
+              padding: 20px 0;
+            }
+            .helpful-box{
+              display: flex;
+              align-items: center;
+              
+              .helpful-txt{
+                font-size: 12px;
+                font-weight: 500;
+                margin-right: 20px;
+              }
+              .helpful-emoticons{
+                .face-icon{
+                  margin-left: 10px;
+                  cursor: pointer;
+                }
+                .face-icon:first-child:hover{
+                  color: red;
+                }
+                .face-icon:nth-child(2):hover{
+                  color: brown;
+                }
+                .face-icon:last-child:hover{
+                  color:green;
+                }
+              }
+            }
           }
         }
       }
       .side-nav{
         display: flex;
-        width:calc(max(220px, calc(100vw - max(300px, calc((100vw - 910px) / 2 - 0px)) - 320px - 80px - 80px - 0px)))
+        width:calc(max(220px, calc(100vw - max(300px, calc((100vw - 910px) / 2 - 0px)) - 320px - 80px - 80px - 0px)));
+        nav{
+          .main-side-nav-tap{
+            margin-top: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            color: rgba(92,105,117,1.00);
+            padding: 3px 20px;
+            border-left: 1px solid rgba(211,220,228,1.00);
+          }
+          .main-side-nav-tap:hover{
+            color: rgb(32, 78, 207);
+            cursor: pointer;
+            
+          }
+          .side-nav-li{
+            padding-left: 0;
+            .side-nav-li-title{
+              margin-top: 20px;
+              font-size: 12px;
+              font-weight: 700;
+              line-height: 18px;
+              padding: 3px 20px;
+              color: #8899a8;
+              border-left: 1px solid rgba(211,220,228,1.00);
+            }
+            .side-nav-li-items{
+              padding-left: 0;
+              .side-nav-li-item{
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 22px;
+                color: rgba(92,105,117,1.00);
+                text-align: left;
+                padding: 5px 30px;
+                border-left: 1px solid rgba(211,220,228,1.00);
+              }
+              .side-nav-li-item:hover{
+                color: #204ecf;
+              }
+            }
+          }
+        }
       }
     }
   }

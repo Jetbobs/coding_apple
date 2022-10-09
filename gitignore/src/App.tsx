@@ -10,7 +10,8 @@ import { Nav, Button, Container, Form, Navbar, NavDropdown } from 'react-bootstr
 import TitleLogo from './img/gitignore_logo.png'
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faArrowLeft, faArrowRight, faLink, faBars  } from '@fortawesome/free-solid-svg-icons'
+import { faFaceSmile, faFaceMeh, faFaceSadTear} from '@fortawesome/free-regular-svg-icons'
 
 
 function App() {
@@ -116,12 +117,43 @@ function App() {
                 </div>
               </div>
               <div className="footer">
-                
+                <p className="modified-days">
+                  Last modified 1yr ago
+                </p>
+                <div className="helpful-box">
+                  <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                  <div className="helpful-emoticons">
+                  <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                  <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                  <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div className="side-nav">
-            <nav></nav>
+            <nav>
+              <li className='main-side-nav-tap'><FontAwesomeIcon icon={faLink} /> Copy link</li>
+              <ul className='side-nav-li'>
+                <li className='side-nav-li-title'>
+                <FontAwesomeIcon icon={faBars} /> ON THIS PAGE
+                </li>
+                <ul className='side-nav-li-items'>
+                  <li className='side-nav-li-item'>
+                    Git
+                  </li>
+                  <li className='side-nav-li-item'>
+                    Linux
+                  </li>
+                  <li className='side-nav-li-item'>
+                    macOs
+                  </li>
+                  <li className='side-nav-li-item'>
+                    Windows
+                  </li>
+                </ul>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
