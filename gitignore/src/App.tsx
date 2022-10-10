@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowLeft, faArrowRight, faLink, faBars } from '@fortawesome/free-solid-svg-icons'
 import { faFaceSmile, faFaceMeh, faFaceSadTear } from '@fortawesome/free-regular-svg-icons'
 // data
-import {data, data2, data3, data4} from './js/data'
+import { data, data2, data3, data4 } from './js/data'
 import main from './js/main'
 //img
 import CustomerImg from './img/customers.png'
@@ -26,7 +26,7 @@ function App() {
   let [sn, snsetting] = useState(['Git', 'Linux', 'macOs', 'Windows'])
   let [maincontents, mcsetting] = useState(data);
   let [mains, mainsetting] = useState(main);
-  let [defaults,defaultsetting] = useState(data2);
+  let [defaults, defaultsetting] = useState(data2);
   console.log(maincontents[1].subtitle)
   return (
     <div className="App">
@@ -104,19 +104,19 @@ function App() {
                 <Title title={mains.title[0]} subtitle={mains.subtitle[0]} ></Title>
                 <div className="contents-container">
                   <div className="contents-item">
-                  <MainTitle title={defaults[0].title}></MainTitle>
-                  <YouTube videoId={'MLjFjtVJqVc'} opts={{
-    height: '540',
-    width: '960',
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
-  }}></YouTube>
+                    <MainTitle title={defaults[0].title}></MainTitle>
+                    <YouTube videoId={'MLjFjtVJqVc'} opts={{
+                      height: '540',
+                      width: '960',
+                      playerVars: {
+                        // https://developers.google.com/youtube/player_parameters
+                        autoplay: 1,
+                      },
+                    }}></YouTube>
                   </div>
                   <div className="contents-item">
-                  <MainTitle title={defaults[1].title}></MainTitle>
-                  <img src={CustomerImg} alt="" />
+                    <MainTitle title={defaults[1].title}></MainTitle>
+                    <img src={CustomerImg} alt="" />
                   </div>
                   <div className="prev-next-btn-container">
                     <div className="prev-next-btn  ta-r mar-r-10">
@@ -158,120 +158,175 @@ function App() {
                 </div>
               </>}></Route>
               <Route path='/install'>
-              <Route path='command-line' element={<>
-                <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
-                <div className="contents-container">
-                  {/* <div className="contents-item">
+                <Route path='command-line' element={<>
+                  <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
+                  <div className="contents-container">
+                    {/* <div className="contents-item">
                 <MainTitle maincontents={maincontents[0].title}></MainTitle>
                 <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
               </div> */}
-                  <>
-                    {
-                      maincontents.map(function (a, b) {
-                        return (
-                          <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
-                        )
-                      })
-                    }
-                  </>
-                  <div className="prev-next-btn-container">
-                    <div className="prev-next-btn  ta-r mar-r-10">
-                      <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                      <div className="btn-text-container">
-                        <div className="btn-title">
-                          Previous
+                    <>
+                      {
+                        maincontents.map(function (a, b) {
+                          return (
+                            <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
+                          )
+                        })
+                      }
+                    </>
+                    <div className="prev-next-btn-container">
+                      <div className="prev-next-btn  ta-r mar-r-10">
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            Previous
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
                         </div>
-                        <div className="btn-dir">
-                          <span>gitignore.io</span>
+                      </div>
+                      <div className="prev-next-btn ta-l mar-l-10">
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            <p>Next</p>
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
                         </div>
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                       </div>
                     </div>
-                    <div className="prev-next-btn ta-l mar-l-10">
-                      <div className="btn-text-container">
-                        <div className="btn-title">
-                          <p>Next</p>
-                        </div>
-                        <div className="btn-dir">
-                          <span>gitignore.io</span>
+                    <div className="footer">
+                      <p className="modified-days">
+                        Last modified 1yr ago
+                      </p>
+                      <div className="helpful-box">
+                        <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                        <div className="helpful-emoticons">
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
                         </div>
                       </div>
-                      <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                     </div>
                   </div>
-                  <div className="footer">
-                    <p className="modified-days">
-                      Last modified 1yr ago
-                    </p>
-                    <div className="helpful-box">
-                      <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
-                      <div className="helpful-emoticons">
-                        <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
-                        <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
-                        <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>}>
+                </>}>
 
-              </Route>
-              <Route path='command-line' element={<>
-                <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
-                <div className="contents-container">
-                  {/* <div className="contents-item">
+                </Route>
+                <Route path='command-line' element={<>
+                  <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
+                  <div className="contents-container">
+                    {/* <div className="contents-item">
                 <MainTitle maincontents={maincontents[0].title}></MainTitle>
                 <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
               </div> */}
-                  <>
-                    {
-                      maincontents.map(function (a, b) {
-                        return (
-                          <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
-                        )
-                      })
-                    }
-                  </>
-                  <div className="prev-next-btn-container">
-                    <div className="prev-next-btn  ta-r mar-r-10">
-                      <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                      <div className="btn-text-container">
-                        <div className="btn-title">
-                          Previous
+                    <>
+                      {
+                        maincontents.map(function (a, b) {
+                          return (
+                            <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
+                          )
+                        })
+                      }
+                    </>
+                    <div className="prev-next-btn-container">
+                      <div className="prev-next-btn  ta-r mar-r-10">
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            Previous
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
                         </div>
-                        <div className="btn-dir">
-                          <span>gitignore.io</span>
+                      </div>
+                      <div className="prev-next-btn ta-l mar-l-10">
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            <p>Next</p>
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
                         </div>
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                       </div>
                     </div>
-                    <div className="prev-next-btn ta-l mar-l-10">
-                      <div className="btn-text-container">
-                        <div className="btn-title">
-                          <p>Next</p>
-                        </div>
-                        <div className="btn-dir">
-                          <span>gitignore.io</span>
+                    <div className="footer">
+                      <p className="modified-days">
+                        Last modified 1yr ago
+                      </p>
+                      <div className="helpful-box">
+                        <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                        <div className="helpful-emoticons">
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
                         </div>
                       </div>
-                      <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                     </div>
                   </div>
-                  <div className="footer">
-                    <p className="modified-days">
-                      Last modified 1yr ago
-                    </p>
-                    <div className="helpful-box">
-                      <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
-                      <div className="helpful-emoticons">
-                        <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
-                        <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
-                        <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>}>
+                </>}>
 
-              </Route>
+                </Route>
+                <Route path='editor-extensions' element={<>
+                  <Title title={mains.title[2]} subtitle={mains.subtitle[2]}></Title>
+                  <div className="contents-container">
+                    {/* <div className="contents-item">
+                <MainTitle maincontents={maincontents[0].title}></MainTitle>
+                <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
+              </div> */}
+                    <>
+                      {
+                        maincontents.map(function (a, b) {
+                          return (
+                            <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
+                          )
+                        })
+                      }
+                    </>
+                    <div className="prev-next-btn-container">
+                      <div className="prev-next-btn  ta-r mar-r-10">
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            Previous
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="prev-next-btn ta-l mar-l-10">
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            <p>Next</p>
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
+                        </div>
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                      </div>
+                    </div>
+                    <div className="footer">
+                      <p className="modified-days">
+                        Last modified 1yr ago
+                      </p>
+                      <div className="helpful-box">
+                        <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                        <div className="helpful-emoticons">
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>}></Route>
               </Route>
             </Routes>
           </div>
@@ -368,7 +423,7 @@ function ContentsItem(props: any) {
 
 }
 //youtube
-function Youtube({videoId}) {
+function Youtube({ videoId }) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -383,8 +438,8 @@ function Youtube({videoId}) {
     },
   };
   return <YouTube
-   videoId="{videoID}" 
-   opts={opts} 
-   onReady={onPlayerReady} />;
+    videoId="{videoID}"
+    opts={opts}
+    onReady={onPlayerReady} />;
 }
 export default App;
