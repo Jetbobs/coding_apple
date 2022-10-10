@@ -10,11 +10,24 @@ import { Nav, Button, Container, Form, Navbar, NavDropdown } from 'react-bootstr
 import TitleLogo from './img/gitignore_logo.png'
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faArrowLeft, faArrowRight, faLink, faBars  } from '@fortawesome/free-solid-svg-icons'
-import { faFaceSmile, faFaceMeh, faFaceSadTear} from '@fortawesome/free-regular-svg-icons'
+import { faMagnifyingGlass, faArrowLeft, faArrowRight, faLink, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faFaceSmile, faFaceMeh, faFaceSadTear } from '@fortawesome/free-regular-svg-icons'
+// data
+import {data, data2, data3, data4} from './js/data'
+import main from './js/main'
+//img
+import CustomerImg from './img/customers.png'
+//youtube
+import YouTube, { YouTubeProps } from 'react-youtube';
 
 
 function App() {
+  let [lt, ltsetting] = useState(['Command Line', 'Editor Extensions', 'Client Applications', 'Local Server'])
+  let [sn, snsetting] = useState(['Git', 'Linux', 'macOs', 'Windows'])
+  let [maincontents, mcsetting] = useState(data);
+  let [mains, mainsetting] = useState(main);
+  let [defaults,defaultsetting] = useState(data2);
+  console.log(maincontents[1].subtitle)
   return (
     <div className="App">
       <div id="header">
@@ -61,7 +74,7 @@ function App() {
                 INSTALL
               </li>
               <ul className="sidebar-menu-list-container">
-                <a href=""><li className="sidebar-menu-list">
+                {/* <a href=""><li className="sidebar-menu-list">
                   Command Line
                 </li></a>
                 <a href=""><li className="sidebar-menu-list">
@@ -72,74 +85,205 @@ function App() {
                 </li></a>
                 <a href=""><li className="sidebar-menu-list">
                   Local Server
-                </li></a>
+                </li></a> */}
+                {
+                  lt.map(function (a, b) {
+                    return (
+                      <LeftTap lt={lt[b]} i={b}></LeftTap>
+                    )
+                  })
+                }
               </ul>
             </ul>
           </nav>
         </div>
         <div id="main-content">
           <div className="main">
-            <div className="main-title">
-              <h1>
-                Command Line
-              </h1>
-              <p className="main-title-sub">
-                To run gitignore.io from your command line you need an active internet connection and an environment function. You need to add a function to your environment that lets you access the gitignore.io API.
-              </p>
-            </div>
-            <div className="contents-container">
-              <div className="contents-item">
-                <h2 className='content-title'>Git</h2>
-                <p className="content-subtitle">Bash</p>
-              </div>
-              <div className="prev-next-btn-container">
-                <div className="prev-next-btn  ta-r mar-r-10">
-                  <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                  <div className="btn-text-container">
-                    <div className="btn-title">
-                      Previous
+            <Routes>
+              <Route path='/' element={<>
+                <Title title={mains.title[0]} subtitle={mains.subtitle[0]} ></Title>
+                <div className="contents-container">
+                  <div className="contents-item">
+                  <MainTitle title={defaults[0].title}></MainTitle>
+                  <YouTube videoId={'MLjFjtVJqVc'} opts={{
+    height: '540',
+    width: '960',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  }}></YouTube>
+                  </div>
+                  <div className="contents-item">
+                  <MainTitle title={defaults[1].title}></MainTitle>
+                  <img src={CustomerImg} alt="" />
+                  </div>
+                  <div className="prev-next-btn-container">
+                    <div className="prev-next-btn  ta-r mar-r-10">
+                      <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                      <div className="btn-text-container">
+                        <div className="btn-title">
+                          Previous
+                        </div>
+                        <div className="btn-dir">
+                          <span>gitignore.io</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="btn-dir">
-                      <span>gitignore.io</span>
+                    <div className="prev-next-btn ta-l mar-l-10">
+                      <div className="btn-text-container">
+                        <div className="btn-title">
+                          <p>Next</p>
+                        </div>
+                        <div className="btn-dir">
+                          <span>gitignore.io</span>
+                        </div>
+                      </div>
+                      <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                    </div>
+                  </div>
+                  <div className="footer">
+                    <p className="modified-days">
+                      Last modified 1yr ago
+                    </p>
+                    <div className="helpful-box">
+                      <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                      <div className="helpful-emoticons">
+                        <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                        <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                        <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="prev-next-btn ta-l mar-l-10">
-                  <div className="btn-text-container">
-                    <div className="btn-title">
-                      <p>Next</p>
+              </>}></Route>
+              <Route path='/install'>
+              <Route path='command-line' element={<>
+                <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
+                <div className="contents-container">
+                  {/* <div className="contents-item">
+                <MainTitle maincontents={maincontents[0].title}></MainTitle>
+                <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
+              </div> */}
+                  <>
+                    {
+                      maincontents.map(function (a, b) {
+                        return (
+                          <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
+                        )
+                      })
+                    }
+                  </>
+                  <div className="prev-next-btn-container">
+                    <div className="prev-next-btn  ta-r mar-r-10">
+                      <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                      <div className="btn-text-container">
+                        <div className="btn-title">
+                          Previous
+                        </div>
+                        <div className="btn-dir">
+                          <span>gitignore.io</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="btn-dir">
-                      <span>gitignore.io</span>
+                    <div className="prev-next-btn ta-l mar-l-10">
+                      <div className="btn-text-container">
+                        <div className="btn-title">
+                          <p>Next</p>
+                        </div>
+                        <div className="btn-dir">
+                          <span>gitignore.io</span>
+                        </div>
+                      </div>
+                      <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                     </div>
                   </div>
-                  <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                </div>
-              </div>
-              <div className="footer">
-                <p className="modified-days">
-                  Last modified 1yr ago
-                </p>
-                <div className="helpful-box">
-                  <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
-                  <div className="helpful-emoticons">
-                  <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
-                  <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
-                  <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                  <div className="footer">
+                    <p className="modified-days">
+                      Last modified 1yr ago
+                    </p>
+                    <div className="helpful-box">
+                      <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                      <div className="helpful-emoticons">
+                        <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                        <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                        <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </>}>
+
+              </Route>
+              <Route path='command-line' element={<>
+                <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
+                <div className="contents-container">
+                  {/* <div className="contents-item">
+                <MainTitle maincontents={maincontents[0].title}></MainTitle>
+                <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
+              </div> */}
+                  <>
+                    {
+                      maincontents.map(function (a, b) {
+                        return (
+                          <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
+                        )
+                      })
+                    }
+                  </>
+                  <div className="prev-next-btn-container">
+                    <div className="prev-next-btn  ta-r mar-r-10">
+                      <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                      <div className="btn-text-container">
+                        <div className="btn-title">
+                          Previous
+                        </div>
+                        <div className="btn-dir">
+                          <span>gitignore.io</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="prev-next-btn ta-l mar-l-10">
+                      <div className="btn-text-container">
+                        <div className="btn-title">
+                          <p>Next</p>
+                        </div>
+                        <div className="btn-dir">
+                          <span>gitignore.io</span>
+                        </div>
+                      </div>
+                      <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                    </div>
+                  </div>
+                  <div className="footer">
+                    <p className="modified-days">
+                      Last modified 1yr ago
+                    </p>
+                    <div className="helpful-box">
+                      <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                      <div className="helpful-emoticons">
+                        <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                        <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                        <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>}>
+
+              </Route>
+              </Route>
+            </Routes>
           </div>
           <div className="side-nav">
             <nav>
               <li className='main-side-nav-tap'><FontAwesomeIcon icon={faLink} /> Copy link</li>
               <ul className='side-nav-li'>
                 <li className='side-nav-li-title'>
-                <FontAwesomeIcon icon={faBars} /> ON THIS PAGE
+                  <FontAwesomeIcon icon={faBars} /> ON THIS PAGE
                 </li>
                 <ul className='side-nav-li-items'>
-                  <li className='side-nav-li-item'>
+                  {/* <li className='side-nav-li-item'>
                     Git
                   </li>
                   <li className='side-nav-li-item'>
@@ -150,7 +294,14 @@ function App() {
                   </li>
                   <li className='side-nav-li-item'>
                     Windows
-                  </li>
+                  </li> */}
+                  {
+                    sn.map(function (a, b) {
+                      return (
+                        <SideNav sn={sn[b]} i={b}></SideNav>
+                      )
+                    })
+                  }
                 </ul>
               </ul>
             </nav>
@@ -160,5 +311,80 @@ function App() {
     </div>
   );
 }
+function LeftTap(props: any) {
+  return (
+    <a href=""><li className="sidebar-menu-list">
+      {props.lt}
+    </li></a>
+  )
+}
+function SideNav(props: any) {
+  return (
+    <li className='side-nav-li-item'>
+      {props.sn}
+    </li>
+  )
+}
+//main
+function Title(props: any) {
+  return (
+    <div className="main-title">
+      <h1>
+        {props.title}
+      </h1>
+      <p className="main-title-sub">
+        {props.subtitle}
+      </p>
+    </div>
+  )
+}
 
+function MainTitle(props: any) {
+  return (
+    <h2 className='content-title'>{props.title}</h2>
+  )
+}
+function SubTitle(props: any) {
+  return (
+    <p className="content-subtitle">{props.subtitle}</p>
+  )
+}
+function ContentsItem(props: any) {
+  let [maincontents, mcsetting] = useState(data);
+  return (
+    <div className='contents-item'>
+      <>
+        <MainTitle title={props.maincontents[props.i].title}></MainTitle>
+        {
+          maincontents[props.i].subtitle.map(function (a, b) {
+            return (
+              <SubTitle subtitle={props.maincontents[props.i].subtitle[b]}></SubTitle>
+            )
+          })
+        }
+      </>
+    </div>
+  )
+
+}
+//youtube
+function Youtube({videoId}) {
+  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+
+  const opts: YouTubeProps['opts'] = {
+    height: '540',
+    width: '960',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+  return <YouTube
+   videoId="{videoID}" 
+   opts={opts} 
+   onReady={onPlayerReady} />;
+}
 export default App;
