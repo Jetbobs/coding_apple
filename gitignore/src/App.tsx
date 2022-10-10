@@ -215,78 +215,28 @@ function App() {
                 </>}>
 
                 </Route>
-                <Route path='command-line' element={<>
-                  <Title title={mains.title[1]} subtitle={mains.subtitle[1]}></Title>
-                  <div className="contents-container">
-                    {/* <div className="contents-item">
-                <MainTitle maincontents={maincontents[0].title}></MainTitle>
-                <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
-              </div> */}
-                    <>
-                      {
-                        maincontents.map(function (a, b) {
-                          return (
-                            <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
-                          )
-                        })
-                      }
-                    </>
-                    <div className="prev-next-btn-container">
-                      <div className="prev-next-btn  ta-r mar-r-10">
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            Previous
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="prev-next-btn ta-l mar-l-10">
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            <p>Next</p>
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
-                          </div>
-                        </div>
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                      </div>
-                    </div>
-                    <div className="footer">
-                      <p className="modified-days">
-                        Last modified 1yr ago
-                      </p>
-                      <div className="helpful-box">
-                        <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
-                        <div className="helpful-emoticons">
-                          <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
-                          <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
-                          <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </>}>
-
-                </Route>
                 <Route path='editor-extensions' element={<>
                   <Title title={mains.title[2]} subtitle={mains.subtitle[2]}></Title>
                   <div className="contents-container">
+                    <div className="contents-item">
+                      <div className="contents-title2">
+                        <span className="title1">Neovim</span>-
+                        <span className="title2">Filip Szymanski</span>
+    
+                      </div>
+                    </div>
                     {/* <div className="contents-item">
                 <MainTitle maincontents={maincontents[0].title}></MainTitle>
                 <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
               </div> */}
                     <>
-                      {
+                      {/* {
                         maincontents.map(function (a, b) {
                           return (
                             <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
                           )
                         })
-                      }
+                      } */}
                     </>
                     <div className="prev-next-btn-container">
                       <div className="prev-next-btn  ta-r mar-r-10">
