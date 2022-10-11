@@ -15,19 +15,28 @@ import { faFaceSmile, faFaceMeh, faFaceSadTear } from '@fortawesome/free-regular
 // data
 import { data, data2, data3, data4 } from './js/data'
 import main from './js/main'
+import main2 from './js/main2'
+import main3 from './js/main3'
+import main4 from './js/main4'
 //img
 import CustomerImg from './img/customers.png'
 //youtube
 import YouTube, { YouTubeProps } from 'react-youtube';
+//codeblock
+import { CodeBlock, codepen, dracula, nord } from "react-code-blocks";
+
 
 
 function App() {
   let [lt, ltsetting] = useState(['Command Line', 'Editor Extensions', 'Client Applications', 'Local Server'])
   let [sn, snsetting] = useState(['Git', 'Linux', 'macOs', 'Windows'])
   let [maincontents, mcsetting] = useState(data);
+  let [maincontents2, mc2setting] = useState(data3);
   let [mains, mainsetting] = useState(main);
+  let [mains2, main2setting] = useState(main2);
+  let [mains3, main3setting] = useState(main3);
+  let [mains4, main4setting] = useState(main4);
   let [defaults, defaultsetting] = useState(data2);
-  console.log(maincontents[1].subtitle)
   return (
     <div className="App">
       <div id="header">
@@ -174,6 +183,15 @@ function App() {
                         })
                       }
                     </>
+                    <div className="contents-item">
+                    <MainTitle title={maincontents2[0].title}></MainTitle>
+                    <Subtitle2 subtitle={maincontents2[0].subscript[0]}></Subtitle2>
+                    <SubTitle subtitle={maincontents2[0].subtitle[0]} code2={maincontents2[0].code2[0]}></SubTitle>
+                    <SubTitle subtitle={maincontents2[0].subtitle[1]} code2={maincontents2[0].code2[1]}></SubTitle>
+                    </div>
+
+                    {/*
+                     */}
                     <div className="prev-next-btn-container">
                       <div className="prev-next-btn  ta-r mar-r-10">
                         <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
@@ -220,9 +238,32 @@ function App() {
                   <div className="contents-container">
                     <div className="contents-item">
                       <div className="contents-title2">
-                        <span className="title1">Neovim</span>-
-                        <span className="title2">Filip Szymanski</span>
-    
+                        <div className="title-container">
+                          <Title2 title={mains2.title[0]} title2={main2.title2[0]}></Title2>
+                        </div>
+                        <Subtitle2 subtitle={mains2.subtitle[0]}></Subtitle2>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'pip3 install --upgrade neovim'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                        <Subtitle2 subtitle={mains2.subtitle[1]}></Subtitle2>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'ext install gi'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                      </div>
+                      <div className="contents-title2">
+                        <div className="title-container">
+                          <Title2 title={mains2.title[1]} title2={main2.title2[1]}></Title2>
+                        </div>
+                        <Subtitle2 subtitle={mains2.subtitle[2]}></Subtitle2>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'pip3 install --upgrade neovim'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                      </div>
+                      <div className="contents-title2">
+                        <div className="title-container">
+                          <Title2 title={mains2.title[2]} title2={main2.title2[2]}></Title2>
+                        </div>
+                        <Subtitle2 subtitle={mains2.subtitle[3]}></Subtitle2>
                       </div>
                     </div>
                     {/* <div className="contents-item">
@@ -238,6 +279,166 @@ function App() {
                         })
                       } */}
                     </>
+                    <div className="prev-next-btn-container">
+                      <div className="prev-next-btn  ta-r mar-r-10">
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            Previous
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="prev-next-btn ta-l mar-l-10">
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            <p>Next</p>
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
+                        </div>
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                      </div>
+                    </div>
+                    <div className="footer">
+                      <p className="modified-days">
+                        Last modified 1yr ago
+                      </p>
+                      <div className="helpful-box">
+                        <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                        <div className="helpful-emoticons">
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>}></Route>
+                <Route path='client-application' element={<>
+                  <Title title={mains.title[3]} subtitle={mains.subtitle[3]}></Title>
+                  <div className="contents-container">
+                    <div className="contents-item">
+                      <div className="contents-title2">
+                        <div className="title-container">
+                          <Title2 title={mains3.title[0]} title2={main3.title2[0]}></Title2>
+                        </div>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'go get -u github.com/Gnouc/gogi'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                      </div>
+                      <div className="contents-title2">
+                        <div className="title-container">
+                          <Title2 title={mains3.title[1]} title2={main3.title2[1]}></Title2>
+                        </div>
+                        <Subtitle2 subtitle={mains3.subtitle[0]}></Subtitle2>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'npx add-gitignore'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                        <Subtitle2 subtitle={mains3.subtitle[1]}></Subtitle2>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={`npm i -g add-gitignore
+add-gitignore macOS Emacs node # or whatever you need`} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                        <Subtitle2 subtitle={mains3.subtitle[2]}></Subtitle2>
+                      </div>
+                      <div className="contents-title2">
+                        <div className="title-container">
+                          <Title2 title={mains3.title[2]} title2={main3.title2[2]}></Title2>
+                        </div>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'pip install ignr'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                      </div>
+                      <div className="contents-title2">
+                        <div className="title-container">
+                          <Title2 title={mains3.title[3]} title2={main3.title2[3]}></Title2>
+                        </div>
+                        <div className="code-block">
+                          <MyCoolCodeBlock code={'cargo install git-ignore-generator'} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div className="contents-item">
+                <MainTitle maincontents={maincontents[0].title}></MainTitle>
+                <SubTitle maincontents={maincontents[0].subtitle}></SubTitle>
+              </div> */}
+                    <>
+                      {/* {
+                        maincontents.map(function (a, b) {
+                          return (
+                            <ContentsItem maincontents={maincontents} i={b}></ContentsItem>
+                          )
+                        })
+                      } */}
+                    </>
+                    <div className="prev-next-btn-container">
+                      <div className="prev-next-btn  ta-r mar-r-10">
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            Previous
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="prev-next-btn ta-l mar-l-10">
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            <p>Next</p>
+                          </div>
+                          <div className="btn-dir">
+                            <span>gitignore.io</span>
+                          </div>
+                        </div>
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                      </div>
+                    </div>
+                    <div className="footer">
+                      <p className="modified-days">
+                        Last modified 1yr ago
+                      </p>
+                      <div className="helpful-box">
+                        <p className="helpful-txt">WAS THIS PAGE HELPFUL?</p>
+                        <div className="helpful-emoticons">
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSmile} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceMeh} />
+                          <FontAwesomeIcon className='face-icon' icon={faFaceSadTear} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>}></Route>
+                <Route path='local-server' element={<>
+                  <Title title={mains.title[4]} subtitle={mains.subtitle[4]}></Title>
+                  <div className="contents-container">
+                    <div className="contents-item">
+                      <MainTitle title={mains4.title[0]}></MainTitle>
+                    </div>
+                    <div className="contents-item">
+                      <MainTitle title={mains4.title[1]}></MainTitle>
+                      <div className="code-block">
+                        <MyCoolCodeBlock code={`$ git clone --recursive git@github.com:toptal/gitignore.io.git
+$ cd gitignore.io/
+$ vapor build
+$ vapor run`} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                      </div>
+                    </div>
+                    <div className="contents-item">
+                      <MainTitle title={mains4.title[2]}></MainTitle>
+                      <Subtitle2 subtitle={mains4.subtitle[0]}></Subtitle2>
+                      <div className="code-block">
+                        <MyCoolCodeBlock code={`$ git clone --recursive git@github.com:toptal/gitignore.io.git
+$ cd gitignore.io/
+$ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+                      </div>
+                      
+                    </div>
                     <div className="prev-next-btn-container">
                       <div className="prev-next-btn  ta-r mar-r-10">
                         <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
@@ -343,6 +544,22 @@ function Title(props: any) {
     </div>
   )
 }
+//main2
+function Title2(props: any) {
+  return (
+    <>
+      <span className="title1">{props.title}</span>-
+      <span className="title2">{props.title2}</span>
+    </>
+  )
+}
+function Subtitle2(props: any) {
+  return (
+    <>
+      <p className="subtitle">{props.subtitle}</p>
+    </>
+  )
+}
 
 function MainTitle(props: any) {
   return (
@@ -350,8 +567,12 @@ function MainTitle(props: any) {
   )
 }
 function SubTitle(props: any) {
-  return (
+  return (<>
     <p className="content-subtitle">{props.subtitle}</p>
+    <div className="code-block">
+    <MyCoolCodeBlock code={props.code2} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+  </div>
+  </>
   )
 }
 function ContentsItem(props: any) {
@@ -363,7 +584,7 @@ function ContentsItem(props: any) {
         {
           maincontents[props.i].subtitle.map(function (a, b) {
             return (
-              <SubTitle subtitle={props.maincontents[props.i].subtitle[b]}></SubTitle>
+              <SubTitle subtitle={props.maincontents[props.i].subtitle[b]} code2={props.maincontents[props.i].code2[b]}></SubTitle>
             )
           })
         }
@@ -391,5 +612,16 @@ function Youtube({ videoId }) {
     videoId="{videoID}"
     opts={opts}
     onReady={onPlayerReady} />;
+}
+//codeblock
+function MyCoolCodeBlock({ code, language, showLineNumbers, theme }) {
+  return (
+    <CodeBlock
+      text={code}
+      language={language}
+      showLineNumbers={showLineNumbers}
+      theme={theme}
+    />
+  );
 }
 export default App;
