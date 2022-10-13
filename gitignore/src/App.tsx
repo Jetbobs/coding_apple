@@ -4,9 +4,9 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, createContext, useEffect } from 'react';
 // react-router-dom
-import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 // react-bootstrap
-import { Nav, Button, Container, Form, Navbar, NavDropdown } from 'react-bootstrap'
+import { Nav, Button, Container, Form, Navbar, NavDropdown, Modal } from 'react-bootstrap'
 import TitleLogo from './img/gitignore_logo.png'
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,18 +18,21 @@ import main from './js/main'
 import main2 from './js/main2'
 import main3 from './js/main3'
 import main4 from './js/main4'
+import sidenav from './js/sidenav'
 //img
 import CustomerImg from './img/customers.png'
 //youtube
 import YouTube, { YouTubeProps } from 'react-youtube';
 //codeblock
 import { CodeBlock, codepen, dracula, nord } from "react-code-blocks";
+import { current } from '@reduxjs/toolkit';
 
 
 
 function App() {
   let [lt, ltsetting] = useState(['Command Line', 'Editor Extensions', 'Client Applications', 'Local Server'])
-  let [sn, snsetting] = useState(['Git', 'Linux', 'macOs', 'Windows'])
+  let [sbl, sblsetting] = useState(['command-line', 'editor-extensions', 'client-applications', 'local-server'])
+  let [sn, snsetting] = useState(sidenav)
   let [maincontents, mcsetting] = useState(data);
   let [maincontents2, mc2setting] = useState(data3);
   let [mains, mainsetting] = useState(main);
@@ -37,12 +40,40 @@ function App() {
   let [mains3, main3setting] = useState(main3);
   let [mains4, main4setting] = useState(main4);
   let [defaults, defaultsetting] = useState(data2);
+
+  //modal
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  //state function
+  function menuActive(event) {
+    let sidebarMenuList = document.querySelectorAll('.sidebar-menu-list');
+    sidebarMenuList.forEach(function (e, i) {
+      document.querySelectorAll('.sidebar-menu-list')[i].classList.remove('sidebar-active');
+    })
+    event.currentTarget.classList.add('sidebar-active');
+  }
+  function menuMouseDown(event) {
+    let sidebarMenuList = document.querySelectorAll('.sidebar-menu-list');
+    event.currentTarget.classList.add('sidebar-onkeydown');
+    sidebarMenuList.forEach(function (e, i) {
+      document.querySelectorAll('.sidebar-menu-list')[i].classList.remove('sidebar-onkeydown');
+    })
+  }
+  const handleCopyClipBoard = async (text: any) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error) {
+    }
+  };
   return (
     <div className="App">
       <div id="header">
         <Navbar expand="lg">
           <Container fluid className='header-continer'>
-            <Navbar.Brand href="#" className='logo-container'>
+            <Navbar.Brand href="/" className='logo-container'>
               <img src={TitleLogo} alt="" className='header-logo' />
               {/* <div className="vertical-line"></div> */}
             </Navbar.Brand>
@@ -53,19 +84,37 @@ function App() {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
               >
-                <Nav.Link href="#action1" className='nav-title'>gitignore.io</Nav.Link>
-                <Nav.Link href="#action2" className='nav-title'>Templates</Nav.Link>
-                <Nav.Link href="#action2" className='nav-title'>Source</Nav.Link>
-                <Nav.Link href="#action2" className='nav-title'>Design</Nav.Link>
+                <Nav.Link href="/" className='nav-title'>gitignore.io</Nav.Link>
+                <Nav.Link href="https://github.com/toptal/gitignore" className='nav-title'>Templates</Nav.Link>
+                <Nav.Link href="https://github.com/toptal/gitignore.io" className='nav-title'>Source</Nav.Link>
+                <Nav.Link href="https://git.design/" className='nav-title'>Design</Nav.Link>
                 {/* <div className="vertical-line"></div> */}
               </Nav>
             </Navbar.Collapse>
             <div className="search-container">
 
-              <Button className='search'>
+              {/* <Button className='search'>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
                 Search...
+              </Button> */}
+              <Button className='search' onClick={handleShow}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              Search
               </Button>
+
+              <Modal show={show} onHide={handleClose}>
+                {/* <Modal.Header closeButton>
+                  <Modal.Title></Modal.Title>
+                </Modal.Header> */}
+                <Modal.Body>
+                  <div className="modal-search-box">
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  <input type="text" placeholder='Search Content...'></input>
+                  </div>
+                </Modal.Body>
+                {/* <Modal.Footer>
+                </Modal.Footer> */}
+              </Modal>
             </div>
           </Container>
         </Navbar>
@@ -74,9 +123,9 @@ function App() {
         <div id="sidebar">
           <nav className="sidebar-menu-container">
             <ul className="sidebar-menu">
-              <a href=""><li className="sidebar-menu-list">
+              <Link to={"/"}><li className="sidebar-menu-list" onClick={menuActive}>
                 gitignore.io
-              </li></a>
+              </li></Link>
             </ul>
             <ul className="sidebar-menu menu-margin" >
               <li className="sidebar-title">
@@ -98,7 +147,7 @@ function App() {
                 {
                   lt.map(function (a, b) {
                     return (
-                      <LeftTap lt={lt[b]} i={b}></LeftTap>
+                      <LeftTap lt={lt[b]} sbl={sbl[b]} i={b} menuActive={menuActive} menuMouseDown={menuMouseDown}></LeftTap>
                     )
                   })
                 }
@@ -114,42 +163,36 @@ function App() {
                 <div className="contents-container">
                   <div className="contents-item">
                     <MainTitle title={defaults[0].title}></MainTitle>
-                    <YouTube videoId={'MLjFjtVJqVc'} opts={{
-                      height: '540',
-                      width: '960',
-                      playerVars: {
-                        // https://developers.google.com/youtube/player_parameters
-                        autoplay: 1,
-                      },
-                    }}></YouTube>
+                    <div className="youtube-box">
+                      <YouTube videoId={'MLjFjtVJqVc'} opts={{
+                        height: '410',
+                        width: '730',
+                        playerVars: {
+                          // https://developers.google.com/youtube/player_parameters
+                          autoplay: 0,
+                        },
+                      }}></YouTube>
+                    </div>
                   </div>
                   <div className="contents-item">
                     <MainTitle title={defaults[1].title}></MainTitle>
                     <img src={CustomerImg} alt="" />
                   </div>
                   <div className="prev-next-btn-container">
-                    <div className="prev-next-btn  ta-r mar-r-10">
-                      <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                      <div className="btn-text-container">
-                        <div className="btn-title">
-                          Previous
+
+                    <Link to={'/install/command-line'}>
+                      <div className="prev-next-btn ta-l mar-l-10 wdth-100">
+                        <div className="btn-text-container">
+                          <div className="btn-title">
+                            <p>Next</p>
+                          </div>
+                          <div className="btn-dir">
+                            <span>{mains.title[1]}</span>
+                          </div>
                         </div>
-                        <div className="btn-dir">
-                          <span>gitignore.io</span>
-                        </div>
+                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
                       </div>
-                    </div>
-                    <div className="prev-next-btn ta-l mar-l-10">
-                      <div className="btn-text-container">
-                        <div className="btn-title">
-                          <p>Next</p>
-                        </div>
-                        <div className="btn-dir">
-                          <span>gitignore.io</span>
-                        </div>
-                      </div>
-                      <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                    </div>
+                    </Link>
                   </div>
                   <div className="footer">
                     <p className="modified-days">
@@ -184,37 +227,43 @@ function App() {
                       }
                     </>
                     <div className="contents-item">
-                    <MainTitle title={maincontents2[0].title}></MainTitle>
-                    <Subtitle2 subtitle={maincontents2[0].subscript[0]}></Subtitle2>
-                    <SubTitle subtitle={maincontents2[0].subtitle[0]} code2={maincontents2[0].code2[0]}></SubTitle>
-                    <SubTitle subtitle={maincontents2[0].subtitle[1]} code2={maincontents2[0].code2[1]}></SubTitle>
+                      <MainTitle title={maincontents2[0].title}></MainTitle>
+                      <Subtitle2 subtitle={maincontents2[0].subscript[0]}></Subtitle2>
+                      <SubTitle subtitle={maincontents2[0].subtitle[0]} code2={maincontents2[0].code2[0]}></SubTitle>
+                      <SubTitle subtitle={maincontents2[0].subtitle[1]} code2={maincontents2[0].code2[1]}></SubTitle>
                     </div>
 
                     {/*
                      */}
                     <div className="prev-next-btn-container">
-                      <div className="prev-next-btn  ta-r mar-r-10">
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            Previous
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="prev-next-btn ta-l mar-l-10">
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            <p>Next</p>
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
+                      <Link to={'/'}>
+                        <div className="prev-next-btn  ta-r mar-r-10">
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              Previous
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[0]}</span>
+                            </div>
                           </div>
                         </div>
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                      </div>
+                      </Link>
+
+                      <Link to={'/install/editor-extensions'}>
+                        <div className="prev-next-btn ta-l mar-l-10">
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              <p>Next</p>
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[2]}</span>
+                            </div>
+                          </div>
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                        </div>
+                      </Link>
+
                     </div>
                     <div className="footer">
                       <p className="modified-days">
@@ -280,28 +329,32 @@ function App() {
                       } */}
                     </>
                     <div className="prev-next-btn-container">
-                      <div className="prev-next-btn  ta-r mar-r-10">
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            Previous
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="prev-next-btn ta-l mar-l-10">
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            <p>Next</p>
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
+                      <Link to={'/install/command-line'}>
+                        <div className="prev-next-btn  ta-r mar-r-10">
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              Previous
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[1]}</span>
+                            </div>
                           </div>
                         </div>
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                      </div>
+                      </Link>
+                      <Link to={'/install/client-applications'}>
+                        <div className="prev-next-btn ta-l mar-l-10">
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              <p>Next</p>
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[3]}</span>
+                            </div>
+                          </div>
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                        </div>
+                      </Link>
                     </div>
                     <div className="footer">
                       <p className="modified-days">
@@ -318,7 +371,7 @@ function App() {
                     </div>
                   </div>
                 </>}></Route>
-                <Route path='client-application' element={<>
+                <Route path='client-applications' element={<>
                   <Title title={mains.title[3]} subtitle={mains.subtitle[3]}></Title>
                   <div className="contents-container">
                     <div className="contents-item">
@@ -376,28 +429,32 @@ add-gitignore macOS Emacs node # or whatever you need`} language={"bash"} showLi
                       } */}
                     </>
                     <div className="prev-next-btn-container">
-                      <div className="prev-next-btn  ta-r mar-r-10">
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            Previous
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="prev-next-btn ta-l mar-l-10">
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            <p>Next</p>
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
+                      <Link to={'/install/client-applications'}>
+                        <div className="prev-next-btn  ta-r mar-r-10">
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              Previous
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[2]}</span>
+                            </div>
                           </div>
                         </div>
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                      </div>
+                      </Link>
+                      <Link to={'/install/local-server'}>
+                        <div className="prev-next-btn ta-l mar-l-10">
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              <p>Next</p>
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[4]}</span>
+                            </div>
+                          </div>
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
+                        </div>
+                      </Link>
                     </div>
                     <div className="footer">
                       <p className="modified-days">
@@ -437,31 +494,22 @@ $ vapor run`} language={"bash"} showLineNumbers={false} theme={codepen}></MyCool
 $ cd gitignore.io/
 $ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
                       </div>
-                      
+
                     </div>
                     <div className="prev-next-btn-container">
-                      <div className="prev-next-btn  ta-r mar-r-10">
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            Previous
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="prev-next-btn ta-l mar-l-10">
-                        <div className="btn-text-container">
-                          <div className="btn-title">
-                            <p>Next</p>
-                          </div>
-                          <div className="btn-dir">
-                            <span>gitignore.io</span>
+                      <Link to={'/install/client-applications'}>
+                        <div className="prev-next-btn  ta-r mar-r-10">
+                          <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
+                          <div className="btn-text-container">
+                            <div className="btn-title">
+                              Previous
+                            </div>
+                            <div className="btn-dir">
+                              <span>{mains.title[4]}</span>
+                            </div>
                           </div>
                         </div>
-                        <FontAwesomeIcon className='arrow-icon' icon={faArrowRight} />
-                      </div>
+                      </Link>
                     </div>
                     <div className="footer">
                       <p className="modified-days">
@@ -477,13 +525,26 @@ $ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepe
                       </div>
                     </div>
                   </div>
+
                 </>}></Route>
               </Route>
             </Routes>
           </div>
+          <Routes>
+            <Route path='/' element={<>
+
+            </>}></Route>
+          </Routes>
           <div className="side-nav">
             <nav>
-              <li className='main-side-nav-tap'><FontAwesomeIcon icon={faLink} /> Copy link</li>
+              <li className='main-side-nav-tap' onClick={() => {
+                let currentLocation = window.location.href;
+                handleCopyClipBoard(currentLocation)
+                document.getElementById('popup').style.transform = 'translateY(-100px)';
+                setTimeout(() => {
+                  document.getElementById('popup').style.transform = 'translateY(0px)';;
+                }, 2000);
+              }}><FontAwesomeIcon icon={faLink} /> Copy link</li>
               <ul className='side-nav-li'>
                 <li className='side-nav-li-title'>
                   <FontAwesomeIcon icon={faBars} /> ON THIS PAGE
@@ -501,27 +562,103 @@ $ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepe
                   <li className='side-nav-li-item'>
                     Windows
                   </li> */}
-                  {
+                  <Routes>
+                    <Route path='/' element={<>
+                      {
+                        sn.main.map(function (a, b) {
+                          let snKey = Object.keys(sn)[b]
+                          return (
+                            <SideNav sn={sn.main[b]} i={b} ></SideNav>
+                          )
+                        })
+                      }
+                    </>}></Route>
+                    <Route path='/install'>
+                      <Route path='command-line' element={<>
+                        {
+                          sn.commandLine.map(function (a, b) {
+                            let snKey = Object.keys(sn)[b]
+                            return (
+                              <SideNav sn={sn.commandLine[b]} i={b} ></SideNav>
+                            )
+                          })
+                        }
+                      </>}>
+
+                      </Route>
+                      <Route path='editor-extensions' element={<>
+                        {
+                          sn.editorExtensions.map(function (a, b) {
+                            let snKey = Object.keys(sn)[b]
+                            return (
+                              <SideNav sn={sn.editorExtensions[b]} i={b} ></SideNav>
+                            )
+                          })
+                        }
+                      </>}>
+
+                      </Route>
+                      <Route path='client-applications' element={<>
+                        {
+                          sn.clientApplications.map(function (a, b) {
+                            let snKey = Object.keys(sn)[b]
+                            return (
+                              <SideNav sn={sn.clientApplications[b]} i={b} ></SideNav>
+                            )
+                          })
+                        }
+                      </>}>
+
+                      </Route>
+                      <Route path='local-server' element={<>
+                        {
+                          sn.localServer.map(function (a, b) {
+                            let snKey = Object.keys(sn)[b]
+                            return (
+                              <SideNav sn={sn.localServer[b]} i={b} ></SideNav>
+                            )
+                          })
+                        }
+                      </>}>
+
+                      </Route>
+                    </Route>
+                  </Routes>
+                  {/* {
                     sn.map(function (a, b) {
+                      let snKey = Object.keys(sn)[b]
                       return (
-                        <SideNav sn={sn[b]} i={b}></SideNav>
+                        <SideNav sn={sn.snKey} i={b} ></SideNav>
                       )
                     })
-                  }
+                  } */}
                 </ul>
               </ul>
             </nav>
           </div>
         </div>
       </div>
+      <div className="clipboard-popup" id='popup'>
+        <div className="popup-container">
+          <p className='popup-title'>Page URL copied to clipboard</p>
+          <p className='popup-subtitle'>paste it wherever you like</p>
+        </div>
+      </div>
     </div>
   );
 }
 function LeftTap(props: any) {
-  return (
-    <a href=""><li className="sidebar-menu-list">
+  let sidebarMenuList = document.querySelectorAll('.sidebar-menu-list');
+  return (<>
+    {/* <a href=""><li className="sidebar-menu-list">
       {props.lt}
-    </li></a>
+    </li></a> */}
+    <Link to={"/install/" + props.sbl}>
+      <li className="sidebar-menu-list" onClick={props.menuActive} onMouseDown={props.menuMouseDown}>
+        {props.lt}
+      </li>
+    </Link>
+  </>
   )
 }
 function SideNav(props: any) {
@@ -570,8 +707,8 @@ function SubTitle(props: any) {
   return (<>
     <p className="content-subtitle">{props.subtitle}</p>
     <div className="code-block">
-    <MyCoolCodeBlock code={props.code2} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
-  </div>
+      <MyCoolCodeBlock code={props.code2} language={"bash"} showLineNumbers={false} theme={codepen}></MyCoolCodeBlock>
+    </div>
   </>
   )
 }
