@@ -26,6 +26,7 @@ import YouTube, { YouTubeProps } from 'react-youtube';
 //codeblock
 import { CodeBlock, codepen, dracula, nord } from "react-code-blocks";
 import { current } from '@reduxjs/toolkit';
+import { useMediaQuery } from 'react-responsive'
 
 
 
@@ -40,6 +41,17 @@ function App() {
   let [mains3, main3setting] = useState(main3);
   let [mains4, main4setting] = useState(main4);
   let [defaults, defaultsetting] = useState(data2);
+
+  //responsive
+  const isDesktop: boolean = useMediaQuery({
+    query: "(min-width:1024px)",
+  });
+  const isTablet: boolean = useMediaQuery({
+    query: "(min-width:768px) and (max-width:1023px)",
+  });
+  const isMobile: boolean = useMediaQuery({
+    query: "(max-width:767px)",
+  });
 
   //modal
   const [show, setShow] = useState(false);
@@ -62,22 +74,48 @@ function App() {
       document.querySelectorAll('.sidebar-menu-list')[i].classList.remove('sidebar-onkeydown');
     })
   }
+  function mobileSidebarOpen (event){
+    let sidebar = document.getElementById('sidebar');
+    let mobileSidebarBg = document.getElementById('mobile-sidebar-bg');
+    sidebar.style.left = "0px"
+    mobileSidebarBg.style.opacity = '0.3';
+  }
+  function mobileSidebarClose (event){ 
+    let sidebar = document.getElementById('sidebar');
+    let mobileSidebarBg = document.getElementById('mobile-sidebar-bg');
+    sidebar.style.left = "-300px"
+    mobileSidebarBg.style.opacity = '0';
+  }
   const handleCopyClipBoard = async (text: any) => {
     try {
       await navigator.clipboard.writeText(text);
     } catch (error) {
     }
   };
+
+  useEffect(() => {
+    
+    return () => {
+      
+    };
+  }, []);
+
   return (
     <div className="App">
       <div id="header">
         <Navbar expand="lg">
-          <Container fluid className='header-continer'>
+          <Container fluid className='header-container'>
             <Navbar.Brand href="/" className='logo-container'>
-              <img src={TitleLogo} alt="" className='header-logo' />
+              <div className="header-menu-mobile"   onClick={mobileSidebarOpen}>
+              {isMobile && <div><FontAwesomeIcon className='mobile-menu' icon={faBars} /></div>
+              }
+              </div>
+
+              <img src={TitleLogo} alt="" className='header-logo' onClick={function(e){
+                e.stopPropagation;
+              }}/>
               {/* <div className="vertical-line"></div> */}
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll" className='main-link-container'>
               <Nav
                 className="me-auto my-2 my-lg-0 title-container"
@@ -98,8 +136,8 @@ function App() {
                 Search...
               </Button> */}
               <Button className='search' onClick={handleShow}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-              Search
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <span>Search</span>
               </Button>
 
               <Modal show={show} onHide={handleClose}>
@@ -108,8 +146,8 @@ function App() {
                 </Modal.Header> */}
                 <Modal.Body>
                   <div className="modal-search-box">
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                  <input type="text" placeholder='Search Content...'></input>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <input type="text" placeholder='Search Content...'></input>
                   </div>
                 </Modal.Body>
                 {/* <Modal.Footer>
@@ -120,19 +158,20 @@ function App() {
         </Navbar>
       </div>
       <div id="content-container">
-        <div id="sidebar">
-          <nav className="sidebar-menu-container">
-            <ul className="sidebar-menu">
-              <Link to={"/"}><li className="sidebar-menu-list" onClick={menuActive}>
-                gitignore.io
-              </li></Link>
-            </ul>
-            <ul className="sidebar-menu menu-margin" >
-              <li className="sidebar-title">
-                INSTALL
-              </li>
-              <ul className="sidebar-menu-list-container">
-                {/* <a href=""><li className="sidebar-menu-list">
+        {isDesktop &&
+          <div id="sidebar">
+            <nav className="sidebar-menu-container">
+              <ul className="sidebar-menu">
+                <Link to={"/"}><li className="sidebar-menu-list" onClick={menuActive}>
+                  gitignore.io
+                </li></Link>
+              </ul>
+              <ul className="sidebar-menu menu-margin" >
+                <li className="sidebar-title">
+                  INSTALL
+                </li>
+                <ul className="sidebar-menu-list-container">
+                  {/* <a href=""><li className="sidebar-menu-list">
                   Command Line
                 </li></a>
                 <a href=""><li className="sidebar-menu-list">
@@ -144,17 +183,96 @@ function App() {
                 <a href=""><li className="sidebar-menu-list">
                   Local Server
                 </li></a> */}
-                {
-                  lt.map(function (a, b) {
-                    return (
-                      <LeftTap lt={lt[b]} sbl={sbl[b]} i={b} menuActive={menuActive} menuMouseDown={menuMouseDown}></LeftTap>
-                    )
-                  })
-                }
+                  {
+                    lt.map(function (a, b) {
+                      return (
+                        <LeftTap lt={lt[b]} sbl={sbl[b]} i={b} menuActive={menuActive} menuMouseDown={menuMouseDown}></LeftTap>
+                      )
+                    })
+                  }
+                </ul>
               </ul>
-            </ul>
-          </nav>
-        </div>
+            </nav>
+          </div>}
+        {isTablet &&
+          <div id="sidebar">
+            <nav className="sidebar-menu-container">
+              <ul className="sidebar-menu">
+                <Link to={"/"}><li className="sidebar-menu-list" onClick={menuActive}>
+                  gitignore.io
+                </li></Link>
+              </ul>
+              <ul className="sidebar-menu menu-margin" >
+                <li className="sidebar-title">
+                  INSTALL
+                </li>
+                <ul className="sidebar-menu-list-container">
+                  {/* <a href=""><li className="sidebar-menu-list">
+                Command Line
+              </li></a>
+              <a href=""><li className="sidebar-menu-list">
+                Editor Extensions
+              </li></a>
+              <a href=""><li className="sidebar-menu-list">
+                Client Applications
+              </li></a>
+              <a href=""><li className="sidebar-menu-list">
+                Local Server
+              </li></a> */}
+                  {
+                    lt.map(function (a, b) {
+                      return (
+                        <LeftTap lt={lt[b]} sbl={sbl[b]} i={b} menuActive={menuActive} menuMouseDown={menuMouseDown}></LeftTap>
+                      )
+                    })
+                  }
+                </ul>
+              </ul>
+            </nav>
+          </div>
+        }
+        {isMobile &&
+          <div className="mobile-sidebar" id='mobile-sidebar'>
+            <div id="sidebar">
+              <nav className="sidebar-menu-container">
+                <ul className="sidebar-menu">
+                  <Link to={"/"}><li className="sidebar-menu-list" onClick={menuActive}>
+                    gitignore.io
+                  </li></Link>
+                </ul>
+                <ul className="sidebar-menu menu-margin" >
+                  <li className="sidebar-title">
+                    INSTALL
+                  </li>
+                  <ul className="sidebar-menu-list-container">
+                    {/* <a href=""><li className="sidebar-menu-list">
+                  Command Line
+                </li></a>
+                <a href=""><li className="sidebar-menu-list">
+                  Editor Extensions
+                </li></a>
+                <a href=""><li className="sidebar-menu-list">
+                  Client Applications
+                </li></a>
+                <a href=""><li className="sidebar-menu-list">
+                  Local Server
+                </li></a> */}
+                    {
+                      lt.map(function (a, b) {
+                        return (
+                          <LeftTap lt={lt[b]} sbl={sbl[b]} i={b} menuActive={menuActive} menuMouseDown={menuMouseDown}></LeftTap>
+                        )
+                      })
+                    }
+                  </ul>
+                </ul>
+              </nav>
+            </div>
+            <div className="mobile-sidebar-bg" id='mobile-sidebar-bg' onClick={mobileSidebarClose}></div>
+          </div>
+
+        }
+
         <div id="main-content">
           <div className="main">
             <Routes>
@@ -164,14 +282,32 @@ function App() {
                   <div className="contents-item">
                     <MainTitle title={defaults[0].title}></MainTitle>
                     <div className="youtube-box">
-                      <YouTube videoId={'MLjFjtVJqVc'} opts={{
-                        height: '410',
-                        width: '730',
+                      {isDesktop &&
+                        <YouTube videoId={'MLjFjtVJqVc'} opts={{
+                          height: '410',
+                          width: '730',
+                          playerVars: {
+                            // https://developers.google.com/youtube/player_parameters
+                            autoplay: 0,
+                          },
+                        }}></YouTube>}
+                      {isTablet && <YouTube videoId={'MLjFjtVJqVc'} opts={{
+                        height: '230',
+                        width: '430',
                         playerVars: {
                           // https://developers.google.com/youtube/player_parameters
                           autoplay: 0,
                         },
-                      }}></YouTube>
+                      }}></YouTube>}
+                      {isMobile &&
+                        <YouTube videoId={'MLjFjtVJqVc'} opts={{
+                          height: '200',
+                          width: '361',
+                          playerVars: {
+                            // https://developers.google.com/youtube/player_parameters
+                            autoplay: 0,
+                          },
+                        }}></YouTube>}
                     </div>
                   </div>
                   <div className="contents-item">
@@ -429,7 +565,7 @@ add-gitignore macOS Emacs node # or whatever you need`} language={"bash"} showLi
                       } */}
                     </>
                     <div className="prev-next-btn-container">
-                      <Link to={'/install/client-applications'}>
+                      <Link to={'/install/editor-extensions'}>
                         <div className="prev-next-btn  ta-r mar-r-10">
                           <FontAwesomeIcon className='arrow-icon' icon={faArrowLeft} />
                           <div className="btn-text-container">
@@ -535,22 +671,23 @@ $ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepe
 
             </>}></Route>
           </Routes>
-          <div className="side-nav">
-            <nav>
-              <li className='main-side-nav-tap' onClick={() => {
-                let currentLocation = window.location.href;
-                handleCopyClipBoard(currentLocation)
-                document.getElementById('popup').style.transform = 'translateY(-100px)';
-                setTimeout(() => {
-                  document.getElementById('popup').style.transform = 'translateY(0px)';;
-                }, 2000);
-              }}><FontAwesomeIcon icon={faLink} /> Copy link</li>
-              <ul className='side-nav-li'>
-                <li className='side-nav-li-title'>
-                  <FontAwesomeIcon icon={faBars} /> ON THIS PAGE
-                </li>
-                <ul className='side-nav-li-items'>
-                  {/* <li className='side-nav-li-item'>
+          {isDesktop &&
+            <div className="side-nav">
+              <nav>
+                <li className='main-side-nav-tap' onClick={() => {
+                  let currentLocation = window.location.href;
+                  handleCopyClipBoard(currentLocation)
+                  document.getElementById('popup').style.transform = 'translateY(-100px)';
+                  setTimeout(() => {
+                    document.getElementById('popup').style.transform = 'translateY(0px)';;
+                  }, 2000);
+                }}><FontAwesomeIcon icon={faLink} /> Copy link</li>
+                <ul className='side-nav-li'>
+                  <li className='side-nav-li-title'>
+                    <FontAwesomeIcon icon={faBars} /> ON THIS PAGE
+                  </li>
+                  <ul className='side-nav-li-items'>
+                    {/* <li className='side-nav-li-item'>
                     Git
                   </li>
                   <li className='side-nav-li-item'>
@@ -562,69 +699,69 @@ $ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepe
                   <li className='side-nav-li-item'>
                     Windows
                   </li> */}
-                  <Routes>
-                    <Route path='/' element={<>
-                      {
-                        sn.main.map(function (a, b) {
-                          let snKey = Object.keys(sn)[b]
-                          return (
-                            <SideNav sn={sn.main[b]} i={b} ></SideNav>
-                          )
-                        })
-                      }
-                    </>}></Route>
-                    <Route path='/install'>
-                      <Route path='command-line' element={<>
+                    <Routes>
+                      <Route path='/' element={<>
                         {
-                          sn.commandLine.map(function (a, b) {
+                          sn.main.map(function (a, b) {
                             let snKey = Object.keys(sn)[b]
                             return (
-                              <SideNav sn={sn.commandLine[b]} i={b} ></SideNav>
+                              <SideNav sn={sn.main[b]} i={b} ></SideNav>
                             )
                           })
                         }
-                      </>}>
+                      </>}></Route>
+                      <Route path='/install'>
+                        <Route path='command-line' element={<>
+                          {
+                            sn.commandLine.map(function (a, b) {
+                              let snKey = Object.keys(sn)[b]
+                              return (
+                                <SideNav sn={sn.commandLine[b]} i={b} ></SideNav>
+                              )
+                            })
+                          }
+                        </>}>
 
-                      </Route>
-                      <Route path='editor-extensions' element={<>
-                        {
-                          sn.editorExtensions.map(function (a, b) {
-                            let snKey = Object.keys(sn)[b]
-                            return (
-                              <SideNav sn={sn.editorExtensions[b]} i={b} ></SideNav>
-                            )
-                          })
-                        }
-                      </>}>
+                        </Route>
+                        <Route path='editor-extensions' element={<>
+                          {
+                            sn.editorExtensions.map(function (a, b) {
+                              let snKey = Object.keys(sn)[b]
+                              return (
+                                <SideNav sn={sn.editorExtensions[b]} i={b} ></SideNav>
+                              )
+                            })
+                          }
+                        </>}>
 
-                      </Route>
-                      <Route path='client-applications' element={<>
-                        {
-                          sn.clientApplications.map(function (a, b) {
-                            let snKey = Object.keys(sn)[b]
-                            return (
-                              <SideNav sn={sn.clientApplications[b]} i={b} ></SideNav>
-                            )
-                          })
-                        }
-                      </>}>
+                        </Route>
+                        <Route path='client-applications' element={<>
+                          {
+                            sn.clientApplications.map(function (a, b) {
+                              let snKey = Object.keys(sn)[b]
+                              return (
+                                <SideNav sn={sn.clientApplications[b]} i={b} ></SideNav>
+                              )
+                            })
+                          }
+                        </>}>
 
-                      </Route>
-                      <Route path='local-server' element={<>
-                        {
-                          sn.localServer.map(function (a, b) {
-                            let snKey = Object.keys(sn)[b]
-                            return (
-                              <SideNav sn={sn.localServer[b]} i={b} ></SideNav>
-                            )
-                          })
-                        }
-                      </>}>
+                        </Route>
+                        <Route path='local-server' element={<>
+                          {
+                            sn.localServer.map(function (a, b) {
+                              let snKey = Object.keys(sn)[b]
+                              return (
+                                <SideNav sn={sn.localServer[b]} i={b} ></SideNav>
+                              )
+                            })
+                          }
+                        </>}>
 
+                        </Route>
                       </Route>
-                    </Route>
-                  </Routes>
-                  {/* {
+                    </Routes>
+                    {/* {
                     sn.map(function (a, b) {
                       let snKey = Object.keys(sn)[b]
                       return (
@@ -632,10 +769,11 @@ $ docker-compose up -d`} language={"bash"} showLineNumbers={false} theme={codepe
                       )
                     })
                   } */}
+                  </ul>
                 </ul>
-              </ul>
-            </nav>
-          </div>
+              </nav>
+            </div>}
+
         </div>
       </div>
       <div className="clipboard-popup" id='popup'>

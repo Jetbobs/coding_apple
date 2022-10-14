@@ -11,6 +11,7 @@ import cart from './routes/Cart'
 import Cart from './routes/Cart';
 import { useQuery } from 'react-query';
 // import imgBg from './img/bg.png';
+import {useMediaQuery} from 'react-responsive'
 
 function App() {
 
@@ -24,6 +25,15 @@ function App() {
     })
   })
 
+  //responsive
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  });
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' });
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+
 
   useEffect(()=>{
     localStorage.setItem('watched', JSON.stringify( [] ))
@@ -33,7 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar bg="blue" variant="dark" className='navbar'>
+      {isDesktopOrLaptop &&       <Navbar bg="blue" variant="dark" className='navbar'>
         <Container className='container'>
           <Navbar.Brand href="#home" className='navbar-brand'>Natti's Shop</Navbar.Brand>
           <Nav className="me-auto">
@@ -46,8 +56,8 @@ function App() {
           <Nav className='ms-auto'>{result.isLoading ? '로딩중' : result.data.name }</Nav>
         </Container>
       </Navbar>
-
-      <Routes>
+      }     
+              {isTabletOrMobile &&       <Routes>
         <Route path='/' element={<div>      <div className="main-bg"></div>
       <div className="container">
         <div className="row">
@@ -69,7 +79,11 @@ function App() {
         <Route path='*' element={<div>없는 페이지요</div>}></Route>
         </Route>
         <Route path='/cart' element={<Cart/>}></Route>
-      </Routes>
+      </Routes>}
+
+      
+
+
       <button style={{display:'none'}} onClick={()=>{ 
         console.log(count)
         setCount(count+1);
