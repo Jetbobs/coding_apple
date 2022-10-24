@@ -112,7 +112,7 @@ function App() {
               </div>
 
               <img src={TitleLogo} alt="" className='header-logo' onClick={function(e){
-                e.stopPropagation;
+                return e.stopPropagation;
               }}/>
               {/* <div className="vertical-line"></div> */}
             </Navbar.Brand>
