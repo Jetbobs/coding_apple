@@ -9,6 +9,7 @@ function App() {
   let [따봉, 따봉변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
+  let [입력값,입력값변경] = useState('');
   function thumbsUp(){
 
   }
@@ -47,6 +48,11 @@ function App() {
               setModal(!modal);
               setTitle(i);
             }}>2월 17일 발행</p>
+            <button onClick={()=>{
+              let copy = [...글제목];
+              copy.splice(i,1);
+              글제목변경(copy);
+            }}>삭제</button>
           </div>
           )
 
@@ -56,7 +62,15 @@ function App() {
         modal == true ? <Modal 글제목={글제목} titleChange={titleChange} title={title}></Modal> : null
         
       }
-      
+      <input type="text" onChange={(e)=>{ 입력값변경(e.target.value) }} />
+      <button onClick={()=>{
+        let copy = [...글제목];
+        copy.push(입력값);
+        글제목변경(copy);
+        let copy1 = [...따봉];
+        copy1.push(0)
+        따봉변경(copy1);
+      }}>게시물 생성</button>
     </div>
   );
 }
